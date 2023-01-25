@@ -136,8 +136,19 @@ let phrase = `Обратные кавычки позволяют встраив�
 
 
 //--------- Задачи --------
-let name = "Ilya";
+let nameIlia = "Ilya";
 
-alert( `hello ${1}` ); // hello 1
-alert( `hello ${"name"}` ); // hello name
-alert( `hello ${name}` ); // hello Ilya
+//alert( `hello ${1}` ); // hello 1
+//alert( `hello ${"name"}` ); // hello name
+//alert( `hello ${nameIlia}` ); // hello Ilya
+
+
+// ========= 2.6 ==============
+//let result = prompt("Your age", 18);
+
+let isBoss = confirm("Ты здесь главный?");
+alert( isBoss );
+
+//--------- Задачи --------
+let askName = prompt("Your name", "");
+alert(askName)
