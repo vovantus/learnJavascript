@@ -90,8 +90,8 @@ newMessage = hello;
 // Имя переменной должно содержать только буквы, цифры или символы $ и _.
 //     Первый символ не должен быть цифрой.
 
-let $ = 1; // объявили переменную с именем "$"
-let _ = 2; // а теперь переменную с именем "_"
+let $ = 1;
+let _ = 2;
 
 //alert($ + _); // 3
 
@@ -101,6 +101,25 @@ const COLOR_GREEN = "#0F0";
 const COLOR_BLUE = "#00F";
 const COLOR_ORANGE = "#FF7F00";
 
-// ...когда нам нужно выбрать цвет
+
 let color = COLOR_ORANGE;
-alert(color); // #FF7F00
+//alert(color);
+
+
+//--------- Задачи --------
+let admin;
+let name;
+
+name = "Джон";
+admin = name;
+//alert( admin );
+
+//---------
+let planetName = 'Earth'
+let currentUser = ''
+
+//---------
+const BIRTHDAY = '18.04.1982';
+
+//const age = someCode(BIRTHDAY);
+//alert(age);
