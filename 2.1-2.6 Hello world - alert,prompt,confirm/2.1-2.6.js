@@ -123,3 +123,21 @@ const BIRTHDAY = '18.04.1982';
 
 //const age = someCode(BIRTHDAY);
 //alert(age);
+
+// ========= 2.5 ==============
+
+//alert( 1 / 0 );
+let str = "Привет";
+let str2 = 'Одинарные кавычки тоже подойдут';
+let phrase = `Обратные кавычки позволяют встраивать переменные ${str}`;
+//alert(phrase)
+
+//alert( `результат: ${1 + 2}` );
+
+
+//--------- Задачи --------
+let name = "Ilya";
+
+alert( `hello ${1}` ); // hello 1
+alert( `hello ${"name"}` ); // hello name
+alert( `hello ${name}` ); // hello Ilya
