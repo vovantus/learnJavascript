@@ -29,14 +29,78 @@
 //     [1, 2].forEach(alert);
 
 
-alert('Hello');[1, 2].forEach(alert);
+//alert('Hello');[1, 2].forEach(alert);
 
 
 /* Закомментировали код
 alert('Привет');
 */
-alert('Мир');
+//alert('Мир');
 
 
 // ========= 2.3 ==============
 // Строгий режим — "use strict"
+
+
+//alert("some code");
+// "use strict" ниже игнорируется - он должен быть в первой строке
+
+//"use strict";
+
+// строгий режим не активирован
+
+
+// ========= 2.4 ==============
+// Переменные
+
+let message;
+message = 'Hello!';
+//alert(message); // показывает содержимое переменной
+
+//---------
+let someOtherMessage = 'Hello!'; // определяем переменную и присваиваем ей значение
+//alert(someOtherMessage); // Hello!
+
+//---------
+let user = 'John';
+let age = 25;
+let ageMessage = 'Hello';
+
+//---------
+let anotherMessage;
+anotherMessage = 'Hello!';
+anotherMessage = 'World!'; // значение изменено
+//alert(anotherMessage);
+
+
+
+//---------
+let hello = 'Hello world!';
+let newMessage;
+
+// копируем значение 'Hello world' из переменной hello в переменную message
+newMessage = hello;
+
+// теперь две переменные содержат одинаковые данные
+//alert(hello); // Hello world!
+//alert(newMessage); // Hello world!
+
+
+//---------
+// Имя переменной должно содержать только буквы, цифры или символы $ и _.
+//     Первый символ не должен быть цифрой.
+
+let $ = 1; // объявили переменную с именем "$"
+let _ = 2; // а теперь переменную с именем "_"
+
+//alert($ + _); // 3
+
+//--------
+const COLOR_RED = "#F00";
+const COLOR_GREEN = "#0F0";
+const COLOR_BLUE = "#00F";
+const COLOR_ORANGE = "#FF7F00";
+
+// ...когда нам нужно выбрать цвет
+let color = COLOR_ORANGE;
+alert(color); // #FF7F00
