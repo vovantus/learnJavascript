@@ -46,10 +46,10 @@ console.log( Boolean("0") );
 console.log( Boolean(" ") );
 
 
-// ========= 2.7 ==============
+// ========= 2.8 ==============
 // Базовые операторы, математика
 
-console.log("========= 2.7 ==============")
+console.log("========= 2.8 ==============")
 
 let x = 1;
 x = -x;
@@ -147,7 +147,8 @@ console.log( 2 * counter5++ );
 let a4 = (1 + 2, 3 + 4);
 console.log( a4 );
 
-//======= Примеры =========
+//======= Задачи =========
+console.log("======= Задачи =========")
 let a5 = 1, b5 = 1;
 let c5 = ++a5; // 2
 let d5 = b5++; // 1
@@ -172,7 +173,63 @@ console.log(null + 1) // 1
 console.log(undefined + 1) // NaN
 console.log(" \t \n" - 2) // -2
 
-let a7 = prompt("Первое число?", 1);
-let b7 = prompt("Второе число?", 2);
+//let a7 = prompt("Первое число?", 1);
+//let b7 = prompt("Второе число?", 2);
 
-console.log(+a7 + +b7); // 12
+//console.log(+a7 + +b7); // 12
+
+// ========= 2.9 ==============
+// Операторы сравнения
+
+console.log("========= 2.9 ==============")
+
+console.log( 2 > 1 );
+console.log( 2 == 1 );
+console.log( 2 != 1 );
+
+let result = 5 > 4;
+console.log( result );
+
+console.log( 'Я' > 'А' );
+console.log( 'Коты' > 'Кода' );
+console.log( 'Сонный' > 'Я' );
+
+console.log( '2' > 1 );
+console.log( '01' == 1 );
+
+console.log( true == 1 );
+console.log( false == 0 );
+
+let a8 = 0;
+console.log( Boolean(a8) );
+let b8 = "0";
+console.log( Boolean(b8) );
+console.log(a8 == b8);
+
+console.log( 0 == false );
+console.log( '' == false );
+
+console.log( 0 === false );
+
+console.log( null === undefined );
+
+console.log( null == undefined );
+
+console.log( null > 0 );  // (1) false
+console.log( null == 0 ); // (2) false
+console.log( null >= 0 ); // true
+
+console.log( undefined > 0 ); // false
+console.log( undefined < 0 ); // false
+console.log( undefined == 0 ); // false
+
+
+//======= Задачи =========
+console.log("======= Задачи =========")
+console.log(5 > 4) //true
+console.log("ананас" > "яблоко") // false
+console.log("2" > "12") // true
+console.log(undefined == null) // true
+console.log(undefined === null) // false
+console.log(null == "\n0\n") // false
+console.log(null === +"\n0\n") //false
