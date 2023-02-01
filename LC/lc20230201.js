@@ -56,10 +56,13 @@ function queueTime(customers, n) {
 function queueTimeTicker(customers, n) {
     let desks = [];
     let time = 0;
+
+    // создаем и сразу заполняем касыы
     for (let i = 0; i < n; i++) {
-        desks.push(customers.shift())
+        desks.push(customers.shift());
     }
 
+    // запускаме счетчик и после каждого прохода уменьшаем на 1, если касса освободилась - переносим покупателя из очереди
     do {
         for (let i = 0; i < n; i++) {
             if (desks[i] === 0){
@@ -71,11 +74,10 @@ function queueTimeTicker(customers, n) {
                 desks[i] -= 1;
             }
         }
-        time += 1
-    } while (customers.length>0)
+        time += 1;
+    } while (customers.length>0);
 
-    return time + Math.max(...desks)
-
+    return time + Math.max(...desks);
 }
 
 console.log(queueTime([5, 3, 4], 1)); // => 12
@@ -89,3 +91,64 @@ console.log(queueTimeTicker([5, 3, 4], 1)); // => 12
 console.log(queueTimeTicker([10, 2, 3, 3], 2));// => 10
 console.log(queueTimeTicker([2, 3, 10], 2)); // => 12
 console.log(queueTimeTicker([16, 14, 10, 3, 13, 9, 8, 19, 18, 20, 3, 7, 4, 16, 3], 6)); //=> 32
+
+
+
+//===========================
+// решение Эдика
+
+function queueTime(customers, n) {
+    if (n === 1) return customers.reduce((acc, item) => acc + item);
+
+    let aboba = new Array(n).fill(0);
+    // console.log(aboba);
+
+    for (let i = 0; i < customers.length; i++) {
+        aboba[n - 1] += customers[i];
+        aboba.sort((a, b) => b - a);
+        // console.log(aboba);
+    }
+
+    return Math.max(...aboba);
+}
+
+console.log(queueTime([5, 3, 4], 1)); // => 12
+console.log(queueTime([10, 2, 3, 3], 2)); // => 10
+console.log(queueTime([2, 3, 10], 2)); // => 12
+console.log(
+    queueTime([16, 14, 10, 3, 13, 9, 8, 19, 18, 20, 3, 7, 4, 16, 3], 6)
+); //=> 32
+
+
+//===========================
+// решение Виктора
+
+function queueTime(customersarr, n) {
+    if (n === 1) return sumArr(customersarr);
+    const kassyTime = [];
+    if (customersarr.length < n) return Math.max(...customersarr);
+
+    for (let i = 0; i < n; i++) {
+        kassyTime.push(customersarr[i]);
+        // console.log('🚀 ~ file: Kassy.js:30 ~ queueTime ~ kassyTime', kassyTime);
+    }
+    //   console.log('index lower kassa:', findLowerIndex(kassyTime));
+    for (let i = n; i < customersarr.length; i++) {
+        kassyTime[findLowerIndex(kassyTime)] += customersarr[i];
+        // console.log('🚀 ~ file: Kassy.js:37 ~ queueTime ~ kassyTime', kassyTime);
+    }
+
+    return Math.max(...kassyTime);
+}
+function sumArr(arr) {
+    return arr.reduce((sum, elem) => elem + sum, 0);
+}
+function findLowerIndex(arr) {
+    return arr.indexOf(Math.min.apply(null, arr));
+}
+console.log(queueTime([5, 3, 4], 1)); // => 12
+console.log(queueTime([10, 2, 3, 3], 2)); // => 10
+console.log(queueTime([2, 3, 10], 2)); // => 12
+console.log(
+    queueTime([16, 14, 10, 3, 13, 9, 8, 19, 18, 20, 3, 7, 4, 16, 3], 6)
+); //=> 32
