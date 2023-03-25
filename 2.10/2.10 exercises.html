@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<p> 2.10 Условное ветвление: if, '?' </p>
+<p> Задачи </p>
+
+<script>
+    if ("0") {
+        alert( 'Привет' );
+    }
+
+
+    let officialName = prompt('Какое официальное название Javascript?', '');
+    if (officialName === 'EMCAScript') {
+        alert('Верно!');
+    } else {
+        alert('Не знаете? EMCAScript');
+    }
+
+
+    let number = prompt('Введите число:','');
+    if (number > 0) {
+        alert('1')
+    } else if (number < 0 ) {
+        alert('-1')
+    } else {
+        alert('0')
+    }
+
+    let result = (a+b < 4) ? 'Мало': 'Много';
+
+
+    let message = (login == 'Сотрудник') ? 'привет!' :
+        (login == 'Директор') ? 'Здравствуйте' :
+        (login == '') ? 'Нет логина' : '';
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
