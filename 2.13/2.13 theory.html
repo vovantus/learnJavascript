@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+
+<p> 2.13 Циклы while и for </p>
+
+<script>
+    "use strict"
+    let k  = 0;
+    while (k<3) {
+        console.log(k);
+        k++;
+    }
+
+    let j = 3;
+    while (j) {
+        console.log(j);
+        j--;
+    }
+
+    j = 3;
+    while (j) console.log(j--);
+
+    let i = 0;
+    do {
+        console.log( i );
+        i++;
+    } while (i < 5);
+
+    for (let i = 0; i < 3; i++) {
+        console.log(i)
+    }
+
+
+    let sum = 0;
+
+    // while (true) {
+    //     let value = +prompt('Введите число','');
+    //     if (!value) break;
+    //
+    //     sum+=value;
+    // }
+    // console.log('сумма: ' + sum);
+
+
+    for (let j = 0; j < 10; j++) {
+        if (j % 2 === 0) continue;
+        console.log(j);
+    }
+
+    outer: for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 4; j++) {
+            let input = prompt(`значение на координатах (${i}, ${j}):`,'')
+            if (!input) continue outer;
+            console.log(`(${i}, ${j}) = ${input}`)
+        }
+
+    }
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

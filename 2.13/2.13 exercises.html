@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+
+<p> 2.13 Циклы while и for </p>
+
+<script>
+    "use strict"
+
+    let i = 3;
+
+    while (i) {
+        console.log( i-- ); //1
+    }
+
+
+    console.log( '===========' );
+    i = 0;
+    while (++i < 5) console.log( i ); //1-4
+
+    console.log( '===========' );
+    i = 0;
+    while (i++ < 5) console.log( i ); //1-5
+
+
+    console.log('===========');
+    for (let i = 0; i <5; i++) console.log(i); //0-4
+
+    console.log('===========');
+    for (let i = 0; i <5; ++i) console.log(i); //0-4
+
+
+    console.log('===========');
+    for (let i = 2; i<=10; i++) {
+        if (i % 2 !== 0) continue;
+        console.log(i)
+    }
+
+    console.log('===========');
+    for (let i = 0; i < 3; i++) {
+        console.log( `number ${i}!` );
+    }
+
+    i = 0;
+    while ( i < 3) {
+        console.log( `number ${i}!` );
+        i++;
+    }
+
+    // i = 0;
+    // do {
+    //     i = prompt('введите число больше 100','');
+    //     console.log(i);
+    // } while (i <= 100 && i)
+
+    let checkSimple = +prompt('введите число, а я поверю простое оно или нет','')
+
+    for (let j = 2; j < checkSimple; j++ ) {
+        inner: for (i = 2; i < j; i++) {
+            if (j % i == 0) break inner;
+        }
+        if (i++ === j) console.log(`${j} - простое`)
+    }
+
+</script>
+</body>
+</html>
