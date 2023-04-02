@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+
+<p> 2.14 switch </p>
+
+<script>
+    "use strict"
+    let browser = 'Chrome'
+    if (browser == 'Edge') {
+        alert('You\'ve got the Edge!')
+    } else if ( browser == 'Chrome' || browser == 'Firefox' || browser == 'Safari' || browser == 'Opera') {
+        alert( 'Okay we support these browsers too' );
+    } else {
+        alert( 'We hope that this page looks ok!' );
+    }
+
+    const number = +prompt('введи чсило от 0 до 3','');
+
+    switch (number) {
+        case 0:
+            alert('вы ввели 0');
+            break;
+        case 1:
+            alert('вы ввели 1');
+            break;
+        case 2:
+        case 3:
+            alert('вы ввели 2 а может 3');
+            break;
+    }
+
+
+
+
+
+
+</script>
+</body>
+</html>

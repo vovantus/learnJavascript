@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+
+<p> 2.14 switch </p>
+
+<script>
+    "use strict"
+    let a = 2 + 2
+    switch (a) {
+        case 3:
+            alert("Маловато");
+            break;
+        case 4:
+            alert("В точку");
+            break;
+        case 5:
+            alert("Перебор");
+            break;
+        default:
+            alert("нет таких значений");
+    }
+
+    a = "1";
+    let b = 0;
+
+    switch (+a) {
+        case b + 1:
+            alert("выполнится");
+            break;
+        default:
+            alert("не выполнится");
+    }
+
+    a = 3;
+
+    switch (a) {
+        case 4:
+            alert("правильно");
+            break;
+        case 3:
+        case 5:
+            alert("не правильно");
+            alert("может посетить урок математики?");
+            break;
+        default:
+            alert("результат выглядит странновато");
+    }
+
+    let arg = prompt("введите чисто","");
+    switch (arg) {
+        case '0':
+        case '1':
+            alert('один или ноль');
+            break;
+
+        case '2':
+            alert('два');
+            break;
+
+        case 3:
+            alert('никогда не выполнится');
+            break;
+        default:
+            alert('неизвестное знеачение')
+    }
+
+
+
+</script>
+</body>
+</html>

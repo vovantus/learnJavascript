@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+
+<p> 2.12 оператор нулевого слияния </p>
+
+<script>
+    "use strict"
+    let a;
+    let b;
+    let result = (a !== null && a !== undefined) ? a : b;
+
+
+    let user;
+
+    alert(user ?? "Аноним");
+
+
+    user = "Иван";
+
+    alert(user ?? "Аноним");
+
+
+    let firstName = null;
+    let lastName = null;
+    let nickName = "Суперкодер";
+
+    alert(firstName ?? lastName ?? nickName ?? "Аноним");
+
+    firstName = null;
+    lastName = null;
+    nickName = "Суперкодер";
+
+    alert(firstName || lastName || nickName || "Аноним");
+
+
+    let height = 0;
+
+    alert(height || 100);
+    alert(height ?? 100);
+
+    height = null;
+    let width = null;
+
+    let area = (height ?? 100) * (width ?? 50);
+
+    alert(area);
+
+
+    // без скобок
+    area = height ?? 100 * width ?? 50;
+
+    // ...сработает вот так (совсем не как нам нужно):
+    area = height ?? (100 * width) ?? 50;
+
+
+    //let x = 1 && 2 ?? 3; // Синтаксическая ошибка
+
+    let x = (1 && 2) ?? 3; // Работает без ошибок
+
+    alert(x); // 2
+
+
+    // будет height=100, если переменная height равна null или undefined
+    height = height ?? 100;
+
+</script>
+</body>
+</html>
