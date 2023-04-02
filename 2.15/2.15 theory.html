@@ -20,6 +20,123 @@
     showMessage();
     showMessage();
 
+
+    let userName = 'Вася';
+
+    function showMessageExtVar() {
+        userName = "Петя"; // (1) изменяем значение внешней переменной
+
+        let message = 'Привет, ' + userName;
+        alert(message);
+    }
+
+    alert( userName ); // Вася перед вызовом функции
+
+    showMessageExtVar();
+
+    alert( userName );
+
+
+    userName = 'Вася';
+
+    function showMessageIntVar () {
+        let userName = 'Петя';
+
+        let message = 'Привет ' + userName;
+        alert(message)
+    }
+
+    showMessageIntVar();
+
+    alert(userName);
+
+
+    function showMessageParams (from, text) {
+        alert( from + ': ' + text);
+    }
+
+    showMessageParams('Аня', 'првиет');
+    showMessageParams('Аня', 'как дела?');
+
+
+    function showMessageDefaultVal (from, text = "no text") {
+        alert( from + ': ' + text);
+    }
+
+    showMessageDefaultVal('Anya');
+
+    function showMessageOldDefault (from, text) {
+        if (text === undefined) {
+            text = 'no text'
+        }
+
+        alert( from + ': ' + text);
+    }
+
+
+    function showMessageOldDefaultAnother (from, text) {
+       text = text || 'default text';
+
+        alert( from + ': ' + text);
+    }
+
+
+    function sum (a,b) {
+        return a + b;
+    }
+
+    let result = sum(1,3);
+    alert(result);
+
+    function checkAge (age) {
+        if (age >= 18) {
+            return true;
+        } else {
+            return confirm('а родители разрешили?');
+        }
+    }
+
+    let age = prompt('сколько лет?', 18);
+
+    if (checkAge(age)) {
+        alert('access');
+    } else {
+        alert('access denied')
+    }
+
+
+    function doNothing () {
+        return;
+    }
+    alert( doNothing() === undefined);
+
+    function showPrimes(n) {
+        nextPrime: for (let i = 2; i < n; i++) {
+            for (let j = 2; j < i; j++) {
+                if (i % j == 0) continue nextPrime;
+            }
+
+            alert( i + ' is prime number')
+        }
+    }
+
+    function showPrimesShort(n) {
+        for (let i = 2; i < n; i++) {
+            if (!isPrime(i)) continue;
+
+            alert( i + ' is prime number')
+        }
+    }
+
+    function isPrime(n) {
+        for (let j = 2; j < n; j++) {
+            if (n % j == 0) return false;
+        }
+        return true;
+    }
+
+
+
 </script>
 </body>
 </html>
