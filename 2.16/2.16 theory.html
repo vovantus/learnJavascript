@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+
+<p> 2.16 function expression </p>
+
+<script>
+    "use strict"
+
+    function sayHi () {
+        console.log('привет!');
+    }
+
+    let sayHello = function () {
+        alert('првиет!');
+    };
+
+    let func = sayHi;
+
+    console.log(func);
+    func();
+    sayHi();
+
+    function ask (question, yes, no) {
+        if (confirm(question)) yes()
+        else no();
+    }
+    
+    function showOk () {
+        alert('вы согласны');
+    }
+
+    function showCancel () {
+        alert('вы отказались')
+        
+    }
+
+    ask('вы согласны?', showOk, showCancel)
+
+
+    ask(
+        'вы согласны?',
+        function() { alert('вы согласились'); },
+        function() {alert('вы отказались'); }
+    );
+
+
+    let age = prompt('how old are you', 18);
+
+    let welcome;
+
+    if (age < 18) {
+        welcome = function() {
+            alert('hi!');
+        };
+    } else {
+        welcome = function() {
+            alert('hello!');
+        };
+    }
+
+    welcome();
+
+    let welcomeIf = (age < 18) ?
+        function () { alert('hi!');} :
+        function () { alert('hello'); };
+
+    welcomeIf();
+
+
+</script>
+</body>
+</html>
