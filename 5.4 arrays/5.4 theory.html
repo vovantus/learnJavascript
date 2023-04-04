@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+
+<p>5.4 arrays</p>
+
+<script>
+    "use strict"
+
+    let arr = new Array();
+    let arr2 = [];
+
+    let fruits = ['apple', 'orange', 'plum'];
+    console.log(fruits[0], fruits[1], fruits[2]);
+
+    fruits[2] = 'lemon';
+    fruits[3] = 'pear';
+    console.log(fruits.length);
+    console.log(fruits);
+
+    let arr3 = ['apple', {name:'John'}, true, function () {console.log('hi'); } ];
+
+    console.log(arr3[1].name);
+    console.log(arr3[3]());
+
+
+    console.log(fruits[fruits.length-1]);
+
+    console.log(fruits.at(1), fruits.at(-1));
+
+    console.log(fruits.pop());
+    console.log(fruits);
+
+    console.log(fruits.push('pear'));
+    console.log(fruits);
+
+    console.log(fruits.shift());
+    console.log(fruits);
+    console.log(fruits.unshift('aplle'));
+    console.log(fruits);
+
+    let fruits2 = fruits;
+    fruits2.push('melon');
+    console.log(fruits);
+
+    for (let i = 0; i< fruits.length; i++) {
+        console.log(fruits[i]);
+    }
+
+    for (let fruit of fruits) {
+        console.log(fruit)
+    };
+
+    let arr4 = [1,2,3,4,5,6,7]
+
+    arr4.length = 2;
+    console.log(arr4);
+
+    console.log(String(fruits));
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<body>
+
+<p> 4.1 objects </p>
+
+<script>
+    "use strict"
+    let user = {
+        name: 'John',
+        age: 30
+    };
+
+    user.isAdmin = true;
+
+    console.log(user);
+
+    delete user.age;
+
+    console.log(user);
+
+    let userIvan = {
+        name: 'Ivan',
+        age: 30,
+        "likes birds":true,
+    };
+
+    console.log(userIvan.name)
+    console.log(userIvan["likes birds"])
+
+
+    const userConst = {
+        name: "John"
+    };
+
+    userConst.name = 'Ivan';
+    console.log(userConst)
+
+
+    let userBirds = {};
+
+    userBirds["likes birds"] = true;
+
+    console.log(userBirds["likes birds"]);
+
+    delete userBirds["likes birds"];
+
+    console.log(userBirds);
+
+    let key = "likes cars";
+
+    userBirds[key] = true;
+
+    console.log(userBirds);
+
+    let userPrompt = {
+        name: "John",
+        age: 30
+    };
+
+
+    key = prompt("what do you want to know about user?","name");
+
+ //   alert(user[key]);
+
+    let fruit = prompt("what fruit you want me to buy?", "apple");
+
+    let bag = {
+        [fruit]:5,
+    };
+
+    console.log(bag.apple);
+
+    fruit = 'apple';
+    let bagComp = {
+        [fruit + 'Computers']:5
+    }
+
+    console.log(bagComp)
+
+    function makeUser(name, age) {
+        return {
+            name:name,
+            age:age
+        };
+    }
+
+
+    let userVar = makeUser("john", 30);
+    console.log(user.name);
+
+    function makeUserShort(name, age) {
+        return {
+            name,
+            age
+        };
+    }
+
+    let shortUser = {
+        name,
+        age:30
+    };
+
+    let obj = {
+        for: 1,
+        let: 2,
+        return: 3
+    };
+
+    console.log(obj.for * obj.let * obj.return);
+
+
+    let objZero = {
+        0: "test"
+    };
+
+    console.log(objZero[0], objZero['0']);
+
+    let userFor = {
+        name: "john",
+        age: 30,
+        isAdmin: true
+    };
+
+    for (let key in userFor) {
+        console.log(key, userFor[key]);
+    };
+
+
+    let codes = {
+        '49': 'Germany',
+        '41': 'Switzerland',
+        '44': 'Great Britain',
+        '1': 'USA'
+    };
+
+    for (let code in codes) {
+        console.log(code);
+    }
+
+    console.log( String(Math.trunc(Number("49"))));
+    console.log( String(Math.trunc(Number("+49"))));
+    console.log( String(Math.trunc(Number("1.2"))));
+
+    let usr = {
+        name: 'John',
+        surname: 'Smith'
+    };
+    usr.age = 25;
+
+    for (let prop in usr) {
+        console.log(prop);
+    }
+
+    console.log( usr.profession);
+
+    console.log( "name" in usr);
+    console.log( "profession" in usr);
+
+    let usrProp = "name";
+    console.log( usrProp in usr);
+
+    usr.profession = undefined;
+
+    console.log( "profession" in usr);
+    console.log(usr.profession);
+
+
+</script>
+</body>
+</html>
