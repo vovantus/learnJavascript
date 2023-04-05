@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4.2 objects copy and links</title>
+</head>
+<body>
+  <p>4.2 objects copy and links</p>
+  <script>
+    "use strict"
+
+    let user = {name: 'John'};
+
+    let admin = user;
+
+    console.log(admin);
+    console.log(admin == user);
+    console.log(admin === user);
+
+    let a = {};
+    let b = {};
+
+    console.log( a == b);
+
+    user.age = 30;
+
+    let clone = {};
+
+    for (let key in user) {
+      clone[key] = user[key];
+    }
+
+    clone.name = 'Pete';
+
+    console.log(user, clone);
+
+
+    let permissions1 = {canView: true};
+    let permissions2 = {canEdit: true};
+
+    Object.assign(user, permissions1, permissions2);
+    console.log(user);
+
+    Object.assign(user, {name:'pete'});
+    console.log(user);
+
+    let clone2 = Object.assign({}, user);
+    console.log(clone2)
+
+
+    user.size = {
+      height: 182,
+      width: 50
+    };
+
+    console.log(user);
+
+    let clone3 = Object.assign({}, user);
+
+    console.log(user == clone3);
+    console.log(user.size == clone3.size);
+
+    user.size.width++;
+    console.log(clone3.size.width);
+
+
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4.4 Object methods, 'this'</title>
+</head>
+<body>
+    <p>4.4 Object methods, 'this'</p>
+
+<script>
+    "use strict"
+    let user = {
+        name: 'John'
+    };
+
+
+    user = {
+        sayHi: function() {
+            alert('hi!');
+        }
+    };
+
+    console.log(user);
+
+
+    user.sayHi();
+
+    user = {
+        name: 'John',
+        sayHi() {
+           alert(this.name + ' hi!')
+        }
+    };
+
+    user.sayHi();
+
+    user = { name: 'John'};
+    let admin = { name: 'Admin'};
+
+    function sayHi() {
+        alert(this.name);
+    }
+
+    user.f = sayHi;
+    admin.f = sayHi;
+
+    user.f();
+    admin.f();
+
+    admin['f']();
+
+    function sayHi2() {
+        alert(this);
+    }
+
+    sayHi2();
+
+    let userArrow = {
+        firstName: "Ilya",
+        sayHi () {
+            let arrow = () => alert(this.firstName);
+            arrow();
+        }
+    };
+
+    userArrow.sayHi();
+
+
+</script>
+
+
+
+</body>
+</html>
