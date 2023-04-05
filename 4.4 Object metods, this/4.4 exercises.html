@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4.4 Object methods, this</title>
+</head>
+<body>
+<p>4.4 Object methods, this</p>
+<script>
+  "use strict"
+
+  function makeUser() {
+    return {
+      name: "John",
+      ref: this
+    };
+  }
+
+  let user = makeUser();
+
+  //alert( user.ref.name ); // error
+
+
+  function makeUser1() {
+    return {
+      name: "John",
+      ref() {
+        return this;
+      }
+    };
+  }
+
+  user = makeUser1();
+
+  alert( user.ref().name ); // John
+
+
+  let calculator = {
+    read() {
+        this.a = +prompt('a=', 0);
+        this.b = +prompt('b=', 0);
+    },
+    sum() {
+        return this.a + this.b;
+    },
+    mul() {
+      return this.a * this.b;
+    }
+  };
+
+  //calculator.read();
+
+  //alert( calculator.sum() );
+  //alert( calculator.mul() );
+  //console.log(calculator);
+
+
+  let ladder = {
+    step: 0,
+    up() {
+      this.step++;
+      return this;
+    },
+    down() {
+      this.step--;
+      return this;
+    },
+    showStep: function() { // показывает текущую ступеньку
+      alert( this.step );
+      return this;
+    }
+  };
+
+  ladder.up().up().down().showStep().down().showStep();
+
+</script>
+
+
+</body>
+</html>
