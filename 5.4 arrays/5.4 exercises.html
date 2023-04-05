@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.4 arrays</title>
+</head>
+<body>
+  <p>5.4 arrays</p>
+
+<script>
+  "use strict"
+
+  let fruits = ["apple", "pear", "orange"];
+
+  let shoppingCart = fruits;
+  shoppingCart.push('banana');
+
+  console.log(fruits.length) //4
+
+
+  let styles = ['jazz','blues'];
+  styles.push('rock-n-roll');
+
+  styles[Math.trunc(styles.length/2)] = 'classic';
+  console.log(styles);
+  console.log(styles.shift())
+  styles.unshift('rap','raggae')
+
+  let arr = ['a','b'];
+
+  arr.push(function () {
+    //alert( this );
+  });
+
+  arr[2]();
+
+  function sumInput () {
+    let arr = [];
+
+    let inp;
+    do {
+      inp = prompt('enter number','');
+      if (+inp != NaN) arr.push(+inp);
+    } while (inp != null && inp != '' && +inp != NaN);
+
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+      sum+=arr[i];
+    }
+
+    return sum;
+  }
+
+  console.log(sumInput())
+
+
+
+
+
+</script>
+
+</body>
+</html>
