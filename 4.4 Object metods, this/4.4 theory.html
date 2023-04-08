@@ -9,6 +9,13 @@
 
 <script>
     "use strict"
+
+    function sayHi2() {
+        alert(this);
+    }
+
+    sayHi2(); // undefined
+
     let user = {
         name: 'John'
     };

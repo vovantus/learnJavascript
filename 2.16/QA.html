@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QA: function expression</title>
+</head>
+<body>
+
+<p>QA: function expression</p>
+
+<script>
+
+  // function expression с название
+  const func = function ololo(a,b) {
+    console.log("123")
+  };
+
+  //  1) можно обратиться к свойству name и вернуть имя
+  console.log(func.name);
+  // 2) если нужно внутри функции обратиться к функции
+  const cd = function countdown(a) {
+    if (a <= 0) return
+    else {
+      console.log(a);
+      a--;
+      countdown(a);
+    }
+  };
+  cd(10);
+
+</script>
+
+
+</body>
+</html>

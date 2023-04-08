@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2.17 arrow functions</title>
+</head>
+<body>
+<p>QA: arrow functions</p>
+
+<script>
+    "use strict"
+// если один аргумент то можно не ставить скобки вокруг аргумента
+    let double = n => n * 2;
+
+
+    // this в стрелочных функциях
+    // стрелочные функции нельзя использовать как методы
+    const func3 = () => console.log(this);
+
+
+    const obj = {
+        func: func3
+    }
+
+   // obj.func();
+
+
+//     нет своего this и оно берется из "внешней" нормальной функции
+
+
+    const obj2 = {
+        showYourself() {
+            let show = func3;
+            console.log('showYourself: ', show);
+            show();
+        },
+
+        showYourselfInside() {
+            let show = () => console.log(this);
+            console.log(show);
+            show();
+        }
+    }
+    obj2.showYourself();
+    obj2.showYourselfInside();
+
+    const func = () => () => () => 'test';
+    console.log(func()()())
+
+    const func2 = () => {
+        const func3 = () => {
+            const func4 = () => 'test';
+            return func4();
+        }
+        return func3();
+
+    }
+
+    console.log(func2());
+
+
+</script>
+
+</body>
+</html>
