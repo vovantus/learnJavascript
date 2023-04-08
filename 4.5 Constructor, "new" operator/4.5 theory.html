@@ -2,9 +2,73 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>4.5 конструктор, оператор new</title>
 </head>
 <body>
+
+<p>4.5 конструктор, оператор new</p>
+
+<script>
+    "use strict"
+
+    function User(name) {
+    // this= {}
+        this.name = name;
+        this.isAdmin = false;
+    //return this;
+    }
+
+    let user = new User('Ivan');
+
+    console.log(user.name, user.isAdmin);
+
+    function UserNew() {
+        console.log(new.target);
+    }
+
+    UserNew();
+    new UserNew();
+
+    function User1(name) {
+        if (!new.target) {
+            return new User(name);
+        }
+
+        this.name = name;
+    }
+
+    let john = User1('John');
+    console.log(john.name)
+
+
+    function BigUser() {
+        this.name = 'John';
+        return { name: "Godzilla"};
+    }
+
+    console.log(new BigUser().name);
+
+    function SmallUser() {
+        this.name = "John";
+        return;
+    }
+
+    console.log(new SmallUser().name)
+
+
+    function User2(name) {
+        this.name = name;
+
+        this.sayHi = function () {
+            console.log('my name is ' +  this.name)
+        };
+    }
+
+    let john2 = new User2('john');
+    john2.sayHi();
+
+</script>
+
 
 </body>
 </html>

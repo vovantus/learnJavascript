@@ -2,9 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>4.5 constructor, "new"</title>
 </head>
 <body>
+<p>4.5 constructor, "new"</p>
+<script>
+    "use strict"
+
+    let obj = {}
+
+    function A() { return obj;}
+    function B() { return obj;}
+
+    console.log(new A() == new B() );
+
+    function Calculator() {
+        return {
+            read() {
+                this.a = +prompt('a=', 0);
+                this.b = +prompt('b=', 0);
+            },
+            sum() {
+                return this.a + this.b;
+            },
+            mul() {
+                return this.a * this.b;
+            }
+        };
+    }
+
+    let calc = new Calculator();
+    //calc.read();
+    console.log(calc.sum(), calc.mul(), calc);
+
+
+    function Accumulator(startingValue) {
+        return {
+            value: startingValue,
+            read() {
+                this.value += +prompt('increase accumulator=', 0);
+            },
+
+        };
+    }
+
+    let acc = new Accumulator(100);
+    acc.read();
+    acc.read();
+    console.log(acc.value, acc);
+
+
+</script>
 
 </body>
 </html>
