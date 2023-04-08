@@ -2,9 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>4.6 Optional chaining '?.'</title>
 </head>
 <body>
+    <p>4.6 Optional chaining '?.'</p>
+<script>
+    "use strict"
+    let user = {};
+    console.log( user.address && user.address.street && user.address.street.name );
+
+    let user1 = {};
+    console.log(user?.address?.street);
+
+    user1 = null;
+    console.log(user?.address?.street);
+
+    //street?.address;  если переменная вообще не определена то ошибка
+
+
+    let user2 = null;
+    let x = 0;
+
+    user2?.sayHi(x++); //  x++ не вычислится так ?. остановит вычисления раньше
+    console.log(x); // 0
+
+
+    let userAdmin = {
+        admin() {
+            console.log('im an admin')
+        }
+    }
+
+    let userGuest = {}
+
+    userAdmin.admin?.();
+    userGuest.admin?.();
+
+
+
+    let key = "firstName";
+
+    let userA = {
+        firstName: "John"
+    };
+
+    let userB = null;
+
+    console.log( userA?.[key] ); // John
+    console.log( userB?.[key] ); // undefined
+
+    delete userA?.firstName; //удалит firstname если юзер существует
+
+    //user?.name = "John"; // Ошибка, не работает
+    // то же самое что написать undefined = "John"
+
+</script>
 
 </body>
 </html>
