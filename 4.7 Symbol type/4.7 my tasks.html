@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4.7 symbol type</title>
+</head>
+<body>
+<p>4.7 symbol type</p>
+<script>
+  "use strict"
+
+
+  // Define a private symbol for discount property
+  const discountSymbol = Symbol('discount');
+
+  class Product {
+    constructor({ name, price, quantity, category, weight }) {
+      this.name = name;
+      this.price = price;
+      this.quantity = quantity;
+      this.category = category;
+      this.weight = weight;
+      this[discountSymbol] = 0; // Initialize discount as 0
+    }
+
+    // Getter for discount property
+    get discount() {
+      return this[discountSymbol];
+    }
+
+    // Setter for discount property
+    set discount(value) {
+      // Validate discount value
+      if (typeof value !== 'number' || value < 0 || value > 1) {
+        throw new Error('Discount must be a number between 0 and 1');
+      }
+
+      // Set discount value
+      this[discountSymbol] = value;
+    }
+
+    // Method to get the total cost of the product
+    getTotalCost() {
+      return this.price * this.quantity;
+    }
+
+    // Method to apply discount to the product's price
+    applyDiscount(discount) {
+      // Validate discount value
+      if (typeof discount !== 'number' || discount < 0 || discount > 1) {
+        throw new Error('Discount must be a number between 0 and 1');
+      }
+
+      // Apply discount to price
+      this.price -= this.price * discount;
+    }
+
+    // Method to get the total result of the product
+    getTotalResult() {
+      let totalCost = this.getTotalCost();
+      let discount = this[discountSymbol];
+
+      // Apply additional discount based on category and weight
+      if (this.category === 'A') {
+        discount += this.weight * this.quantity * 0.1;
+      }
+
+      return totalCost - (totalCost * discount);
+    }
+  }
+
+  class ShoppingCart {
+    constructor() {
+      this.products = []; // Initialize an empty array to store products
+    }
+
+    // Method to add a product to the shopping cart
+    addProduct(product) {
+      this.products.push(product);
+    }
+
+    // Method to get the total cost of all products in the shopping cart
+    getTotalCost() {
+      let totalCost = 0;
+
+      // Iterate through each product and calculate total cost
+      for (let product of this.products) {
+        totalCost += product.getTotalCost();
+      }
+
+      return totalCost;
+    }
+
+    // Method to apply discount to the price of all products in the shopping cart
+    applyDiscount(discount) {
+      // Validate discount value
+      if (typeof discount !== 'number' || discount < 0 || discount > 1) {
+        throw new Error('Discount must be a number between 0 and 1');
+      }
+
+      // Apply discount to each product's price
+      for (let product of this.products) {
+        product.applyDiscount(discount);
+      }
+    }
+
+    // Method to get the total result of the shopping cart
+    getTotalResult() {
+      let totalResult = 0;
+
+      // Iterate through each product and calculate total result
+      for (let product of this.products) {
+        totalResult += product.getTotalResult();
+      }
+
+      return totalResult;
+    }
+  }
+
+  // Usage example:
+
+  // Create products
+  const product1 = new Product({ name: 'Product 1', price: 10, quantity: 2, category: 'A', weight: 0.5 });
+  const product2 = new Product({ name: 'Product 2', price: 20, quantity: 1, category: 'B', weight: 1 });
+
+  // Create shopping cart
+  const cart = new ShoppingCart();
+
+  // Add products to the shopping cart
+  cart.addProduct(product1);
+  cart.addProduct(product2);
+
+  // Get total cost of products in the shopping cart
+  console.log("Total cost of products in the shopping cart: $" + cart.getTotalCost()); // Output: Total cost of products in the shopping cart: $40
+
+  // Apply discount to the price of all products in the shopping cart
+  cart.applyDiscount(0.1);
+
+  // Get total result of the shopping cart after applying discount
+  console.log("Total result of the shopping cart after applying discount: $" + cart.getTotalResult()); // Output: Total result of the shopping cart after applying discount: $36
+
+</script>
+
+</body>
+</html>
