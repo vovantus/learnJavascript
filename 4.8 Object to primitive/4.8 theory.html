@@ -9,6 +9,63 @@
 
 <script>
 
+  "use strict"
+
+  let user = {
+    name: "John",
+    money: 100,
+
+    [Symbol.toPrimitive](hint){
+      console.log(`hint: ${hint}`);
+      return hint == 'string' ? `{name: "${this.name}"}` : this.money;
+    }
+  };
+
+  console.log('holly hint!'.concat(' ', user));
+  console.log(+user);
+  console.log(user + 500);
+
+  console.log(user.valueOf() === user);
+
+  let user2 = {
+    name: 'John',
+    money: 100,
+
+    toString() {
+      return `{name: "${this.name}"}`;
+    },
+
+    valueOf() {
+      return this.money;
+    }
+  };
+
+  console.log('holly hint!'.concat(' ', user2));
+  console.log(+user2);
+  console.log(user2 + 500);
+
+  let user3 = {
+    name: 'John',
+
+    toString() {
+      return this.name;
+    }
+  };
+
+  console.log('holly hint!'.concat(' ', user3));
+  console.log(user3 + 500);
+
+
+  let obj = {
+    toString() {
+      return "2";
+    }
+  };
+
+  console.log(obj * 2);
+  console.log(obj + 2);
+
+
 </script>
 
 </body>

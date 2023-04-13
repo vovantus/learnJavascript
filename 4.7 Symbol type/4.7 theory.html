@@ -8,6 +8,58 @@
   <p>4.7 Тип данных Symbol</p>
 
 <script>
+    "use strict"
+
+    let id = Symbol();
+    console.log(id);
+
+    let id2 = Symbol("id");
+    console.log(id2)
+
+    let id3 = Symbol("id");
+
+    console.log(id2 == id3);
+    //alert(toString(id));
+    console.log(id2.description)
+
+    let user = {
+        name: "Вася"
+    }
+
+    user[id2] = 1;
+    console.log(user[id2], user, user[id3]);
+
+    for (let key in user) console.log(key);
+
+    let clone = Object.assign({},user);
+    console.log('clone', clone[id2]);
+
+    let symbolName = 'id3'
+    let id4 = Symbol.for(symbolName);
+
+    let idAgain = Symbol.for(symbolName);
+
+    console.log(id4 === idAgain, Symbol.keyFor(id4));
+
+    let globalSymbol = Symbol.for('name');
+    let localSymbol = Symbol('id4');
+
+    console.log(Symbol.keyFor(globalSymbol));
+    console.log(Symbol.keyFor(localSymbol));
+
+    console.log(localSymbol.description)
+
+    console.log(Object.getOwnPropertySymbols(user));
+
+    for (let i = 0; i < Object.getOwnPropertySymbols(user).length; i++) {
+        console.log('loop props:', user[Object.getOwnPropertySymbols(user)[i]]);
+    }
+    console.log(Reflect.ownKeys(user));
+
+    for (let key of Reflect.ownKeys(user)) {
+        console.log('loop keys', key, user[key])
+    }
+
 
 </script>
 
