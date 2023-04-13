@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4.7 symbol type</title>
+</head>
+<body>
+<p>4.7 symbol type</p>
+<script>
+  "use strict"
+
+  function privateProp(obj) {
+      let key = Symbol();
+      obj[key] = 'private prop';
+      return obj;
+  }
+
+  let obj = {
+      name:'John',
+      age: '30'
+  };
+
+  obj = privateProp(obj);
+  console.log(obj);
+
+
+  function CreateBank() {
+      this.accounts = [];
+      this.createAccount = function(amt) {
+          const accNum = Symbol();
+          const account = {
+              number: accNum,
+              amt: amt
+          }
+          this.accounts.push(account);
+          return accNum;
+      };
+      this.getAmt = function(account) {
+          for (let acc of this.accounts) {
+              console.log(acc);
+              if (acc['number'] === account) {
+                  return acc['amt'];
+              }
+          }
+      }
+  }
+
+
+
+  const bank = new CreateBank();
+  let account1 = bank.createAccount(1000);
+
+  console.log(bank);
+  console.log(bank.getAmt(account1))
+
+
+
+
+  function makePrivateObj(str){
+      const prKey = Symbol.for(str);
+      obj = {
+          [prKey]: str,
+      };
+      return obj;
+  }
+
+  const str = 'test'
+  const prObj = makePrivateObj(str);
+
+  console.log(prObj);
+
+
+
+
+</script>
+
+</body>
+</html>
