@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4.8 Symbol to primitive</title>
+</head>
+<body>
+<p>4.8 Symbol to primitive</p>
+<script>
+  "use strict"
+
+  let str = 'string';
+  let str2 = new String(str);
+  //console.log(str2);
+
+  const obj = {
+      name: 'john',
+      sum: '100',
+      [Symbol.toPrimitive] (hint) {
+          switch (hint) {
+              case 'string':
+                return 'string hint ' + this.name;
+              case 'number':
+                return this.sum;
+              case 'default':
+                  return 'default hint ' + this.sum + ' ' + this.name;
+              default:
+                  break;
+          }
+      }
+  }
+
+  function getDefault(obj, hint) {
+      return (hint) ? obj[Symbol.toPrimitive](hint) : obj[Symbol.toPrimitive]('default')
+  }
+
+  console.log(getDefault(obj));
+  console.log(getDefault(obj, 'string'));
+  console.log('test ' + obj);
+  console.log('test '.concat(obj));
+  console.log(obj*2);
+
+
+</script>
+
+</body>
+</html>

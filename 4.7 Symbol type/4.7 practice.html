@@ -77,6 +77,56 @@
   console.log();
 
 
+  function copyObjectWithoutPrivateProps (obj) {
+      const copiedObj = {};
+
+      for ( let key in obj) {
+          copiedObj[key] = obj[key];
+      }
+
+      return copiedObj;
+  }
+
+
+  function copyObjectWithPrivateProps (obj) {
+      const copiedObj = {};
+      const keys = Object.keys(obj);
+      console.log('keys', keys)
+
+      for ( let key of keys) {
+          copiedObj[key] = obj[key];
+      }
+
+      const privateSyms = Object.getOwnPropertySymbols(obj);
+      console.log('private syms:', privateSyms);
+
+      for ( let key of privateSyms) {
+          copiedObj[key] = obj[key];
+      }
+
+      const allPropNames = Reflect.ownKeys(obj);
+      console.log('all prp names', allPropNames);
+
+      return copiedObj;
+  }
+
+  prKey = Symbol();
+
+  let objWithPrivateProp = {
+      name: 'John',
+      [prKey] : 'privateprop value'
+  }
+
+  let cloneObj = copyObjectWithoutPrivateProps(objWithPrivateProp);
+  console.log(objWithPrivateProp);
+  console.log(cloneObj);
+  cloneObj = copyObjectWithPrivateProps(objWithPrivateProp);
+  console.log(cloneObj);
+
+  const arr = [1,2,3,5,6];
+  console.log(Object.getOwnPropertySymbols(arr), arr);
+
+
 
 
 </script>
