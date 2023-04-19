@@ -8,6 +8,118 @@
   <p>5.3 Strings</p>
 <script>
   "use strict"
+
+  function sum(a,b) {
+      return a + b;
+  }
+
+  console.log(`1 + 2 = ${sum(1,2)}.`);
+
+  let guestList = `Guests:
+  * John
+  * Pete
+  * Marry
+  `;
+
+  console.log(guestList);
+
+  let guestsList2 = "Guests: \n* John\n * Pete\n * Marry";
+  console.log(guestsList2);
+
+  let str1 = 'Hello\nWorld';
+  let str2 = `Hello
+World`;
+
+  console.log(str1 == str2);
+
+  console.log('I\'m the Walrus!');
+  console.log('The backslash: \\');
+
+  console.log('My\n'.length);
+
+  let str = 'Hello';
+
+  console.log(str[0]);
+  console.log(str.at(0));
+
+  console.log(str[str.length - 1]);
+  console.log(str.at(-1));
+
+  console.log(str[-2]);
+  console.log(str.at(-2));
+
+  for (let char of str ) {
+      console.log(char);
+  }
+  //
+  // str[1] = 'h';
+  // console.log(str[0]);
+
+  str = 'Interface'
+
+  console.log('Interface'.toUpperCase());
+  console.log(str[0].toLowerCase());
+  console.log(str);
+
+  let str3 = 'Widget with id';
+
+  console.log(str3.indexOf('Widget'));
+  console.log(str3.indexOf('widget'));
+
+  console.log(str3.indexOf('id'));
+
+  console.log(str3.indexOf('id', 4));
+
+
+  let target = 'id';
+
+  let pos = 0;
+  while (true) {
+      let foundPos = str3.indexOf(target, pos);
+      if (foundPos == -1) break;
+
+      console.log(`found here ${foundPos}`);
+      pos = foundPos + 1;
+  };
+
+  pos = -1;
+  while ((pos = str3.indexOf(target,pos+1)) != -1) {
+      console.log(pos);
+  };
+
+  if (str3.indexOf('Widget')) {
+      console.log('not working');
+  };
+
+  if (str3.indexOf('Widget') != -1)  {
+      console.log('it works!');
+  };
+
+  console.log(~2, ~1, ~0, ~-1);
+
+  if (~str3.indexOf('Widget')) {
+      console.log('it works!');
+  };
+
+  console.log(str3.includes('Widget'));
+  console.log('Hello'.includes('Bye'));
+
+  console.log(str3.includes('Widget',3));
+  console.log(str3.startsWith('Wid'));
+  console.log(str3.endsWith('id'));
+
+  let str4 = 'stringify';
+
+  console.log(str4.slice(0,5));
+  console.log(str4.slice(0,1));
+
+  console.log(str4.slice(2));
+
+  console.log(str4.slice(-4,-1));
+  console.log(str4.slice(-4,-3));
+
+
+
 </script>
 
 </body>

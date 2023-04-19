@@ -12,57 +12,63 @@
   // let b = +prompt('enter b= ','');
   //
   // console.log(a+b);
-
-  console.log(6.35.toFixed(1));
-  console.log(Math.round(6.35*10)/10);
-
-  console.log(+null, +undefined, +'')
-
-  function readNumber() {
-    let a;
-    do {
-      a = prompt('enter number: ','');
-      console.log(+a);
-      console.log(isNaN(+a));
-      if ((a === "") || (a===undefined)) {
-        return null;
-      };
-    } while (isNaN(+a));
-  }
-
-  //readNumber();
-
-  let i = 0;
-  while (i < 11) {
-    i += 0.2;
-    if (i > 9.8 && i < 10.2) console.log( i );
-  }
-
-  function random(min,max) {
-    return min + (max-min)*Math.random()
-  }
-
-  console.log(random(1,5));
-  console.log(random(6,100));
-
-  function randomInt(min,max) {
-    return Math.round(random(min,max));
-  }
-
-  // function randomInteger(min, max) {
-  //   // получить случайное число от (min-0.5) до (max+0.5)
-  //   let rand = min - 0.5 + Math.random() * (max - min + 1);
-  //   return Math.round(rand);
+  //
+  // console.log(6.35.toFixed(1));
+  // console.log(Math.round(6.35*10)/10);
+  //
+  // console.log(+null, +undefined, +'')
+  //
+  // function readNumber() {
+  //   let a;
+  //   do {
+  //     a = prompt('enter number: ','');
+  //     console.log(+a);
+  //     console.log(isNaN(+a));
+  //     if ((a === "") || (a===undefined)) {
+  //       return null;
+  //     };
+  //   } while (isNaN(+a));
   // }
-
-  // function randomInteger(min, max) {
-  //   // случайное число от min до (max+1)
-  //   let rand = min + Math.random() * (max + 1 - min);
-  //   return Math.floor(rand);
+  //
+  // //readNumber();
+  //
+  // let i = 0;
+  // while (i < 11) {
+  //   i += 0.2;
+  //   if (i > 9.8 && i < 10.2) console.log( i );
   // }
+  //
+  // function random(min,max) {
+  //   return min + (max-min)*Math.random()
+  // }
+  //
+  // console.log(random(1,5));
+  // console.log(random(6,100));
+  //
+  // function randomInt(min,max) {
+  //   return Math.round(random(min,max));
+  // }
+  //
+  // // function randomInteger(min, max) {
+  // //   // получить случайное число от (min-0.5) до (max+0.5)
+  // //   let rand = min - 0.5 + Math.random() * (max - min + 1);
+  // //   return Math.round(rand);
+  // // }
+  //
+  // // function randomInteger(min, max) {
+  // //   // случайное число от min до (max+1)
+  // //   let rand = min + Math.random() * (max + 1 - min);
+  // //   return Math.floor(rand);
+  // // }
+  //
+  // console.log(randomInt(1,5));
+  // console.log(randomInt(6,100));
 
-  console.log(randomInt(1,5));
-  console.log(randomInt(6,100));
+
+
+
+
+
 
 </script>
 
