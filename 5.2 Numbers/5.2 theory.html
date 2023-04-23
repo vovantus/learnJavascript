@@ -8,6 +8,36 @@
 <p>5.2 Numbers</p>
 <script>
   "use strict"
+
+  // ===============================
+  // number (от - (2 pow 53) -1) до (2 pow 53) -1))
+  //   6e10
+  //   6e-10
+  // 0x , 0b, 0o - 16, 2, 8 - ричные записи (0xff = 255)
+  //   num.toString(base); - переводит в систему счисления и возв р строку base(2-36, по умолч 10)
+
+  //   Math.floor();
+  //   Math.ceil();
+  //   Math.round();
+  //   Math.trunc(); - удаляет дробную часть
+
+  //   num.toFixed(n); -  округляет до n знаков и возвращает строку, либо дописывает нули(округляет как round)
+  //   isNaN(val); - преобразует и проверяет
+  //   isFinite(val);
+  //   Number.isFinite(); - сначала проверяет относится ли к типу number
+  //   Number.isNaN(); - сначала проверяет относится ли к типу number
+  //   сравнение Object.is(NaN, NaN)  === true, идентичен ===
+
+  //   parseInt(str);
+  //   parseFloat(str);
+      // возвр NaN если не получается преобразовать
+  //   parseInt(str, radix);  - можно задать систем счисления вторым параметром
+  //   Math.random();  [0,1)
+  //   Math.max(a,b,c,...)
+  //   Math.min(a,b,c,...)
+  //   Math.pow(n,power)
+
+
   let billion = 1e9;
   console.log(billion);
   billion = 7.3e9;
@@ -97,26 +127,7 @@
   console.log(Math.min(1,2,4,3));
 
   console.log(Math.pow(2,10));
-// ===============================
-//   6e10
-//   6e-10
-//   num.toString(base);
-//   Math.floor();
-//   Math.ceil();
-//   Math.round();
-//   Math.trunc(); - удаляет дробную часть
-//   num.toFixed(n); -  возвращает строку
-//   isNaN(val);
-//   isFinite(val);
-//   Number.isFinite();
-//   Number.isNaN();
-//   parseInt(str);
-//   parseFloat(str);
-//   parseInt(str, radix);  - можно задать систем счисления вторым параметром
-//   Math.random();  [0,1)
-//   Math.max(a,b,c,...)
-//   Math.min(a,b,c,...)
-//   Math.pow(n,power)
+
 
 
 
