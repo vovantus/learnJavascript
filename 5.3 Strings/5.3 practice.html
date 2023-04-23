@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.3 Strings</title>
+</head>
+<body>
+<p>5.3 Strings</p>
+<script>
+    "use strict"
+
+    function ucFirst(str) {
+        if (!str) return str;
+
+        return str[0].toUpperCase() +  str.slice(1);
+
+    };
+
+    console.log(ucFirst("вася"));
+
+    function checkSpam(str) {
+        str = str.toLowerCase();
+
+        return (str.includes('viagra') || str.includes('xxx'));
+
+    }
+
+    console.log(checkSpam('buy ViAgRA now'));
+    console.log(checkSpam('free xxx'));
+    console.log(checkSpam('inncocent rabbbit'));
+
+    function truncate(str, maxlength) {
+        if (str.length > maxlength) {
+            return str.slice(0, maxlength - 1) + '...';
+        } else {
+            return str;
+        }
+    }
+
+    console.log( truncate("Вот, что мне хотелось бы сказать на эту тему:", 20));
+    console.log(truncate("Всем привет!", 20));
+
+    function extraCurrencyValue(str) {
+        return +str.slice(1)
+    }
+
+    console.log(extraCurrencyValue('$120'));
+
+
+</script>
+
+</body>
+</html>

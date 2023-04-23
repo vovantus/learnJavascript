@@ -8,6 +8,33 @@
   <p>5.3 Strings</p>
 <script>
   "use strict"
+  // str.length - длина
+  // str[pos], undefined если pos < 0
+  // str.at(pos)  - возвр элемент, можно отриц позицию at(-1) - последний символ
+
+  // str.toLowerCase(), str.toUpperCase()
+
+
+  // str.indexOf(substr, pos) - поиск позиции подстроки, -1 если не найдено
+  // str.lastIndexOf(substr, pos) -  поиск позиции с конца строки
+
+  // побитовое НЕ, возвр для чисел -(n+1)
+
+  // str.includes(substr, pos) овзвр true/false
+  // str.startsWith() str.endsWith()
+
+  // str.slice(start[, end]) -- от start до end (не включая end) -- можно передавать отрицательные значения
+  // str.substring(start[, end]) -- между start и end -- отрицательные значения равнозначны 0
+  // substr(start, length) -- length символов, начиная от start -- значение start может быть отрицательным
+
+  // сравнение строк
+  // str.codePointAt(pos) - возвр код символа
+  // String.fromCodePoint(code) - возвр символ по коду
+
+  //str.localeCompare(str2)
+  // Отрицательное число, если str меньше str2.
+  //     Положительное число, если str больше str2.
+  // 0, если строки равны.
 
   function sum(a,b) {
       return a + b;
@@ -118,7 +145,28 @@ World`;
   console.log(str4.slice(-4,-1));
   console.log(str4.slice(-4,-3));
 
+  console.log(str4.substring(2,6));
+  console.log(str4.substring(6,2));
+  console.log(str4.substring(6,-4));
 
+
+  console.log(str4.substr(2,3));
+  console.log(str4.substr(-2,3));
+
+// сравнение
+  console.log( 'a' > 'Z' );
+  console.log( 'Österreich' > 'Zealand' );
+  console.log( "z".codePointAt(0) );
+  console.log( "Z".codePointAt(0) );
+
+  let str5 = '';
+
+  for (let i = 65; i <= 220; i++) {
+      str5 += String.fromCodePoint(i);
+  }
+  console.log( str5 );
+
+  console.log( 'Österreich'.localeCompare('Zealand'));
 
 </script>
 
