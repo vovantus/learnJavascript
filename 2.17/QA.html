@@ -31,32 +31,33 @@
     const obj2 = {
         showYourself() {
             let show = func3;
-            console.log('showYourself: ', show);
             show();
         },
 
         showYourselfInside() {
             let show = () => console.log(this);
-            console.log(show);
             show();
-        }
+        },
+
+        showYourselfNoName : () => console.log(this),
     }
     obj2.showYourself();
     obj2.showYourselfInside();
+    obj2.showYourselfNoName();
 
-    const func = () => () => () => 'test';
-    console.log(func()()())
-
-    const func2 = () => {
-        const func3 = () => {
-            const func4 = () => 'test';
-            return func4();
-        }
-        return func3();
-
-    }
-
-    console.log(func2());
+    // const func = () => () => () => 'test';
+    // console.log(func()()())
+    //
+    // const func2 = () => {
+    //     const func3 = () => {
+    //         const func4 = () => 'test';
+    //         return func4();
+    //     }
+    //     return func3();
+    //
+    // }
+    //
+    // console.log(func2());
 
 
 </script>
