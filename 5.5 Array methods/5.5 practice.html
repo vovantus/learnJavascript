@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.5 Array methods</title>
+</head>
+<body>
+<p>5.5 Array methods</p>
+
+<script>
+  "use strict"
+
+  // Напишите функцию camelize(str), которая преобразует строки вида «my-short-string» в «myShortString».
+  // То есть дефисы удаляются, а все слова после них получают заглавную букву.
+
+  function camelize (str) {
+    return str
+            .split('-')
+            .map( (el, index)  => index == 0 ? el : el[0].toUpperCase() + el.slice(1))
+            .join('');
+  }
+
+  console.log(camelize("background-color") == 'backgroundColor');
+  console.log(camelize("list-style-image") == 'listStyleImage');
+  console.log(camelize("-webkit-transition") == 'WebkitTransition');
+
+
+
+
+  // Напишите функцию filterRange(arr, a, b), которая принимает массив arr,
+  // ищет элементы со значениями больше или равными a и меньше или равными b
+  // и возвращает результат в виде массива.
+  //
+  // Функция должна возвращать новый массив и не изменять исходный.
+
+  function filterRange(arr, a, b) {
+    return arr.filter( el => (el >= a && el <= b));
+  }
+
+  let arr = [5, 3, 8, 1];
+
+
+  let filtered = filterRange(arr, 1, 4);
+
+  console.log( filtered ); // 3,1 (совпадающие значения)
+  console.log( arr ); // 5,3,8,1 (без изменений)
+
+
+  // Напишите функцию filterRangeInPlace(arr, a, b), которая принимает массив arr
+  // и удаляет из него все значения кроме тех, которые находятся между a и b.
+  // То есть, проверка имеет вид a ≤ arr[i] ≤ b.
+  // Функция должна изменять принимаемый массив и ничего не возвращать.
+   function filterRangeInPlace(arr, a, b) {
+     for (let i=0; i<=arr.length; i++) {
+       if (arr[i] < a || arr[i] > b) {
+         arr.splice(i,1);
+         i--;
+       }
+     }
+
+   }
+  arr = [5, 3, 8, 1];
+  filterRangeInPlace(arr, 1, 4);
+   console.log(arr);
+
+// Сортировать в порядке по убыванию
+
+  let arr2 = [5, 2, 1, -10, 8];
+
+  arr2.sort((a,b) => b-a);
+  console.log( arr2 ); // 8, 5, 2, 1, -10
+
+  // У нас есть массив строк arr. Нужно получить отсортированную копию, но оставить arr неизменённым.
+  //         Создайте функцию copySorted(arr), которая будет возвращать такую копию.
+
+  function copySorted (arr) {
+    let result = arr.slice().sort();
+  }
+
+  let arr3 = ["HTML", "JavaScript", "CSS"];
+
+  let sorted = copySorted(arr3);
+
+  console.log( sorted ); // CSS, HTML, JavaScript
+  console.log( arr3 ); // HTML, JavaScript, CSS (без изменений)
+
+  //Во-первых, реализуйте метод calculate(str), который принимает строку типа "1 + 2"
+  // в формате «ЧИСЛО оператор ЧИСЛО» (разделено пробелами) и возвращает результат.
+  // Метод должен понимать плюс + и минус -.
+
+  function Calculator() {
+    this.methods = {
+      "-": (a,b) => a-b,
+      "+": (a,b) => a+b
+    };
+
+    this.calculate = function (str) {
+      let split = str.split(' '),
+      a = +split[0],
+      op = split[1],
+      b = +split[2]
+
+      if (!this.methods[op] || isNaN(a) || isNaN(b)) {
+        return NaN;
+      }
+
+      return this.methods[op](a,b);
+    }
+
+    this.addMethod = function(name, func) {
+      this.methods[name] = func;
+    }
+  }
+  let powerCalc = new Calculator;
+  powerCalc.addMethod("*", (a, b) => a * b);
+  powerCalc.addMethod("/", (a, b) => a / b);
+  powerCalc.addMethod("**", (a, b) => a ** b);
+
+  let result = powerCalc.calculate("2 ** 3");
+  console.log(result);
+
+// У вас есть массив объектов user, и в каждом из них есть user.name.
+  // Напишите код, который преобразует их в массив имён.
+
+  // let vasya = { name: "Вася", age: 25 };
+  // let petya = { name: "Петя", age: 30 };
+  // let masha = { name: "Маша", age: 28 };
+  //
+  // let users = [ vasya, petya, masha ];
+  //
+  // let names = users.map(item => item.name);
+  // console.log(names ); // Вася, Петя, Маша
+  //
+  // let vasya1 = { name: "Вася", surname: "Пупкин", id: 1 };
+  // let petya1 = { name: "Петя", surname: "Иванов", id: 2 };
+  // let masha1 = { name: "Маша", surname: "Петрова", id: 3 };
+  //
+  // let users1 = [ vasya1, petya1, masha1 ];
+  //
+  // let usersMaped = users1.map(item => ({fullName: item.name + ' ' + item.surname, id: item.id}));
+  // console.log(usersMaped);
+
+
+
+  //Напишите функцию sortByAge(users), которая принимает массив объектов со свойством age и сортирует их по нему.
+  // function sortByAge(arr){
+  //   return arr.sort((a,b) => (a.age - b.age))
+  // }
+  //
+  // let vasya = { name: "Вася", age: 25 };
+  // let petya = { name: "Петя", age: 30 };
+  // let masha = { name: "Маша", age: 28 };
+  //
+  // let arr4 = [ vasya, petya, masha ];
+  //
+  // sortByAge(arr4);
+  //
+  // // теперь: [vasya, masha, petya]
+  // console.log(arr4[0].name); // Вася
+  // console.log(arr4[1].name); // Маша
+  // console.log(arr4[2].name); // Петя
+
+  //
+  // Напишите функцию shuffle(array), которая перемешивает (переупорядочивает случайным образом) элементы массива.
+  //
+  //         Многократные прогоны через shuffle могут привести к разным последовательностям элементов.
+
+  function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+  }
+
+  // Напишите функцию getAverageAge(users), которая принимает массив объектов со свойством age и возвращает средний возраст.
+  //         Формула вычисления среднего арифметического значения: (age1 + age2 + ... + ageN) / N.
+
+  function getAverageAge(users) {
+    return users.reduce((acc,user) => acc+=user.age,0)/users.length;
+  }
+
+  //console.log(getAverageAge(arr4));
+
+  // Пусть arr – массив строк.
+  // Напишите функцию unique(arr), которая возвращает массив, содержащий только уникальные элементы arr.
+
+  function unique(arr) {
+    let result = [];
+
+    for (let item of arr) {
+      if (!result.includes(item)) {
+        result.push(item);
+      }
+    }
+
+    return result;
+  }
+
+  let strings = ["кришна", "кришна", "харе", "харе",
+    "харе", "харе", "кришна", "кришна", ":-O"
+  ];
+
+  console.log( unique(strings) ); // кришна, харе, :-O
+
+
+  // Допустим, мы получили массив пользователей в виде {id:..., name:..., age:... }.
+  //
+  // Создайте функцию groupById(arr), которая создаст из него объект с id в качестве ключа
+  // и элементами массива в качестве значений.
+
+  function groupById(users){
+    return users.reduce((acc,item) => {
+                    acc[item.id] = item;
+                    return acc;
+                        },{})
+  }
+
+  let users = [
+    {id: 'john', name: "John Smith", age: 20},
+    {id: 'ann', name: "Ann Smith", age: 24},
+    {id: 'pete', name: "Pete Peterson", age: 31},
+  ];
+
+  let usersById = groupById(users);
+
+  console.log(usersById)
+
+  /*
+  // после вызова у нас должно получиться:
+
+  usersById = {
+    john: {id: 'john', name: "John Smith", age: 20},
+    ann: {id: 'ann', name: "Ann Smith", age: 24},
+    pete: {id: 'pete', name: "Pete Peterson", age: 31},
+  }
+  */
+
+
+
+
+</script>
+
+
+</body>
+</html>
