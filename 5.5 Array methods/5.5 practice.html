@@ -10,12 +10,24 @@
 <script>
   "use strict"
 
+ arr.at(-1)  получаем по индекса, можно отрицательные
+  for (let item of arr)
+      new Array(2)
+  new Array('1tem', '1tem')
+
+  toString - разделяет запятой
+
+  // splice(pos, deleteCount, ...items) – начиная с индекса pos удаляет deleteCount элементов и вставляет items.
+  // slice(start, end) – создаёт новый массив, копируя в него элементы с индекса start до end (не включая end).
+  // concat(...items) – возвращает новый массив: копирует все члены текущего массива и добавляет к нему
+  // items. Если какой-то из items является массивом, тогда берутся его элементы.
+
+
   // Напишите функцию camelize(str), которая преобразует строки вида «my-short-string» в «myShortString».
   // То есть дефисы удаляются, а все слова после них получают заглавную букву.
 
   function camelize (str) {
-    return str
-            .split('-')
+    return str.split('-')
             .map( (el, index)  => index == 0 ? el : el[0].toUpperCase() + el.slice(1))
             .join('');
   }
