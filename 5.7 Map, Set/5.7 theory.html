@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.7 map set</title>
+</head>
+<body>
+<script>
+    "use strict"
+
+    /**
+     * new Map() -  создает коллекцию
+     * map.set(key, value) - записыввает по ключу key значение value
+     * map.get(key) - возвращает значение по ключу key или  undefined если ключ отсутствует
+     * map.has(key)- возвращает true если ключ присутствует иначе - false
+     * map.delete(key) - удаляет пару key/value
+     * map.clear() - очищает коллекцию
+     * map.size - возвращает текуще кол-во элементов
+     *
+     * map.keys() - возвращает итерируемый объект с ключами
+     * map.values() - возвращает итерируемый объект со значениями
+     * map.entries() -  возвращает итерируемый объект с парами k,v он используется по умолчанию в for .. of
+     *
+     *
+     *
+     * Object.entries(obj) - возвращает массив пар ключ-значение из объекта
+     * Object.fromEntries(arr) -  создает объет из массива пар
+     */
+
+    let map = new Map();
+
+    map.set("1", "str1");
+    map.set(1, "num1");
+    map.set(true, "boolean");
+
+    console.log(map.get(1), map.get("1"), map.get(true));
+
+    console.log(map.size);
+
+    let john = { name: "John" };
+
+    let visitsCount = new Map();
+    visitsCount.set(john,123);
+    console.log(visitsCount.get(john))
+
+    let map1 = new Map();
+    map1.set("1", "str1").set(1, "num1").set(true, "boolean");
+    console.log(map1);
+
+    let recieptMap = new Map([
+        [ 'ogurets', 500],
+        ['pomidor',350],
+        ['luk', 50]
+    ]);
+
+    for (let vegetable of recieptMap.keys()) {
+        console.log(vegetable);
+    }
+
+    for (let amt of recieptMap.values()) {
+        console.log(amt);
+    }
+
+    for (let entry of recieptMap) {
+        console.log(entry);
+    }
+
+    recieptMap.forEach((v,k,map) => {
+        console.log(`${k}: ${v}`);
+    });
+
+    let obj = {
+        name: 'John',
+        age: 30
+    };
+
+    let map3 = new Map(Object.entries(obj));
+    console.log(map3);
+
+
+    let prices = Object.fromEntries([
+        ['banana', 1],
+        ['orange', 2],
+        ['meat', 4]
+    ]);
+
+    console.log(prices.orange);
+
+
+    let map4 = new Map();
+    map4.set('banana', 1);
+    map4.set('orange', 2);
+    map4.set('meat', 4);
+
+    let obj2 = Object.fromEntries(map4.entries());
+    let obj3 = Object.fromEntries(map4);
+
+    console.log(obj3, obj2);
+
+
+    /**
+     * new Set(iterable) - создает Set и если в качестве аргумента передан итерируемый
+     *  объект - копирует в Set его значения
+     * set.add(val) - добавляет значение в коллекцию(если оно уже есть то ничего не делает) и возращает Set
+     * set.delete(val) -  удаляет значение и возвращает  true если оно было и false если не было
+     * set.has(val) - возвращает true если val присутствует и  false если нет
+     * set.clear() - удаляет все значения
+     * set.size() - возвращает кол-во элементов
+     */
+
+    let set = new Set();
+
+    let john1 = { name: "John" };
+    let pete = { name: "Pete" };
+    let mary = { name: "Mary" };
+
+
+    set.add(john1);
+    set.add(pete);
+    set.add(mary);
+    set.add(john1);
+    set.add(mary);
+
+    console.log(set.size); // 3
+
+    for (let user of set) {
+       console.log(user.name);
+    }
+
+
+    let set1 = new Set(["апельсин", "яблоко", "банан"]);
+
+    for (let value of set1) console.log(value);
+
+    set1.forEach((value, valueAgain, set) => {
+        console.log(value);
+    });
+
+
+
+
+</script>
+
+</body>
+</html>

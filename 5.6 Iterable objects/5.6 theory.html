@@ -2,9 +2,87 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>5.6 перебираемые объекты</title>
 </head>
 <body>
+    <script>
+        "use strict"
+        let range = {
+            from: 1,
+            to: 5
+        };
+
+        range[Symbol.iterator] = function() {
+            return {
+                current: this.from,
+                last: this.to,
+
+                next() {
+                    if (this.current <= this.last) {
+                        return {done: false, value: this.current++ };
+                    } else {
+                        return {done:true};
+                    }
+                }
+            }
+        }
+
+        for (let i of range) {
+            console.log(i);
+        }
+
+        let range2 = {
+            from: 1,
+            to: 5,
+            [Symbol.iterator]() {
+                this.current = this.from;
+                return this;
+            },
+            next() {
+                if (this.current <= this.to) {
+                    return {done: false, value: this.current++};
+                } else {
+                    return {done:true};
+                }
+            }
+        }
+
+        for (let num of range2) {
+            console.log(num, range);
+        }
+
+        let str = "hello";
+
+        let iterator =  str[Symbol.iterator]();
+        console.log(str[Symbol.iterator]);
+
+        while (true) {
+            let result = iterator.next();
+            if (result.done) break;
+            console.log(result.value);
+        }
+
+
+        let likeArr = {
+            0:"Hello",
+            1:"World",
+            length:2
+        };
+
+        let arr = Array.from(likeArr);
+        console.log(arr.pop());
+
+
+        let arr2 = Array.from(range, num => num*num);
+
+        console.log(arr2)
+
+        let str1 = '𝒳😂';
+
+        let chars = Array.from(str1);
+        console.log(chars[0]);
+
+    </script>
 
 </body>
 </html>
