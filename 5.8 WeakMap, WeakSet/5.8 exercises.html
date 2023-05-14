@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.8 WeakMap, WeakSet</title>
+</head>
+<body>
+  <script>
+    "use strict"
+    let messages = [
+      {text: 'hello', from: 'John'},
+      {text: 'how are you?', from: 'John'},
+      {text: 'see you', from: 'Alice'}
+    ];
+
+    let messageStatus = new WeakSet();
+
+    messageStatus.add(messages[0]).add(messages[2]);
+
+    console.log(messageStatus.has(messages[2]));
+
+    let readTime = new WeakMap();
+
+    readTime.set(messages[0], new Date(2017,1,1));
+
+    console.log(readTime.get(messages[0]));
+    console.log(readTime.get(messages[1]));
+
+
+  </script>
+
+</body>
+</html>

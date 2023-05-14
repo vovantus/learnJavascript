@@ -2,9 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>5.8 weakMap weakSet</title>
 </head>
 <body>
+<script>
+    "use strict"
+
+    /**
+     * weakMap.get(key)
+     * weakMap.set(key, value)
+     * weakMap.delete(key)
+     * weakMap.has(key)
+     */
+
+    let weakMap = new WeakMap();
+
+    let obj = {};
+
+    weakMap.set(obj,'ok');
+
+   // weakMap.set('test','oops'); нельзя тк ключ не объект
+
+    obj = null;
+
+    console.log(weakMap.get(obj));
+
+    // ==================================
+    // Для хранения дополнительных данных
+
+    // 📁 visitsCount.js
+    let visitsCountMap = new WeakMap(); // map: пользователь => число визитов
+
+    // увеличиваем счётчик
+    function countUser(user) {
+        let count = visitsCountMap.get(user) || 0;
+        visitsCountMap.set(user, count + 1);
+    }
+
+    // ==================================
+    // Для кеширования
+
+    // 📁 cache.js
+    let cache = new WeakMap();
+
+    // вычисляем и запоминаем результат
+    function process(obj) {
+        if (!cache.has(obj)) {
+            let result = /* вычисляем результат для объекта */ obj;
+
+            cache.set(obj, result);
+        }
+
+        return cache.get(obj);
+    }
+
+    // 📁 main.js
+    let obj = {/* какой-то объект */};
+
+    let result1 = process(obj);
+    let result2 = process(obj);
+
+    // ...позже, когда объект больше не нужен:
+    obj = null;
+
+
+    //=====================
+    // weakSet
+
+    let visitedSet = new WeakSet();
+
+    let john = { name: "John" };
+    let pete = { name: "Pete" };
+    let mary = { name: "Mary" };
+
+    visitedSet.add(john); // John заходил к нам
+    visitedSet.add(pete); // потом Pete
+    visitedSet.add(john); // John снова
+
+    // visitedSet сейчас содержит двух пользователей
+
+    // проверим, заходил ли John?
+    alert(visitedSet.has(john)); // true
+
+    // проверим, заходила ли Mary?
+    alert(visitedSet.has(mary)); // false
+
+    john = null;
+
+</script>
 
 </body>
 </html>
