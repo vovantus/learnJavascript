@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  "use strict"
+
+  const arr = [1,2,3,4,6,7]
+
+  for (let item in arr) {
+    console.log(item);
+  }
+  console.log(arr);
+
+  // toSorted()
+
+  const months = ['jan', 'feb','mar','apr']
+  const monthsSorted = months.toSorted();
+
+  console.log(months,monthsSorted);
+  months.sort();
+  console.log(months);
+
+  // toReversed()
+
+  const monthsReversed = months.toReversed();
+  console.log(monthsReversed);
+
+  // toSpliced()
+
+  const mothsSpliced = months.toSpliced(2,1);
+  console.log(mothsSpliced);
+
+
+</script>
+
+</body>
+</html>
