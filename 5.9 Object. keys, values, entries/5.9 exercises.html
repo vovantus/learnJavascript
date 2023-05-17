@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.9 Object. keys, values, entries</title>
+</head>
+<body>
+  <script>
+
+     "use strict"
+
+     function sumSlalries (salaryList) {
+       let sum = 0;
+       for (let salary of Object.values(salaryList)) {
+         sum += salary;
+       };
+       return sum;
+     }
+
+     let salaries = {
+       "John":100,
+       "Pete":300,
+       "Mary":250,
+     };
+
+     console.log(sumSlalries(salaries));
+
+     function sumSlalriesReduce (salaryList) {
+       return Object.values(salaryList).reduce((acc,item) => acc += item,0);
+     }
+
+     console.log(sumSlalriesReduce(salaries));
+
+     function count(obj) {
+       return Object.keys(obj).length;
+     }
+
+     console.log(count(salaries));
+  </script>
+</body>
+</html>

@@ -5,6 +5,57 @@
     <title>5.9 Object. keys, values, entries</title>
 </head>
 <body>
+<script>
+     "use strict"
+
+     /**
+      * Object.keys(obj) – возвращает массив ключей.
+      * Object.values(obj) – возвращает массив значений.
+      * Object.entries(obj) – возвращает массив пар [ключ, значение].
+      * игнорируют символьные свойства
+      *
+      * Object.getOwnPropertySymbols
+      * Reflect.ownKeys(obj)
+      *
+      */
+
+     let user = {
+         name: 'John',
+         age: 30
+     };
+
+     console.log(Object.keys(user), Object.values(user), Object.entries(user));
+
+     for (let val of Object.values(user)) {
+         console.log(val);
+     };
+
+     let arr = [1,2,3,4]
+
+     console.log(Object.getOwnPropertySymbols(arr));
+     console.log(Reflect.ownKeys(arr));
+
+     let myMap = new Map();
+     myMap.set(1,1);
+     myMap.set('test', {test: 1});
+
+     console.log(Object.getOwnPropertySymbols(myMap));
+     console.log(Reflect.ownKeys(myMap));
+
+     let prices = {
+         banana:1,
+         orange:2,
+         meat:4,
+     };
+
+     let doublePrices = Object.fromEntries(
+         Object.entries(prices).map(([key, value]) => [key, value*2])
+     );
+
+     console.log(doublePrices);
+
+
+</script>
 
 </body>
 </html>
