@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.10 destructing assignment</title>
+</head>
+<body>
+<script>
+  "use strict"
+
+  let user = {
+    name: 'John',
+    years: 30
+  };
+
+  let {name, years, isAdmin = false} = user;
+
+  console.log(name, years, isAdmin);
+
+  let salaries = {
+    "John": 300,
+    "Pete": 100,
+    "Mary": 200
+  }
+
+  function topSalary(salaries) {
+    let top = null;
+    let sal = 0;
+
+    for (let [k,v] of Object.entries(salaries)) {
+      if (v > sal) {
+         sal = v;
+         top = k;
+      }
+    }
+    return top;
+  }
+
+  console.log(topSalary(salaries));
+
+</script>
+
+</body>
+</html>
