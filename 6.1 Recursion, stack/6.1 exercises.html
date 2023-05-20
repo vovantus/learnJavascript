@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6.1 recursion, stack</title>
+</head>
+<body>
+<script>
+  "use strict"
+  function sumTo(n) {
+    let sum = 0;
+    for(let i=1; i<=n;i++) {
+      sum+=i;
+    }
+    return sum;
+  };
+
+  function sumToRecursion(n){
+    if (n == 1) return 1;
+    return n + sumToRecursion(n-1);
+  };
+
+  function sumToProgression(n) {
+    return n * ( n + 1 )/2;
+  };
+
+  console.log('cycle: ', sumTo(100));
+  console.log('recursion : ', sumToRecursion(100));
+  console.log('progression : ', sumToProgression(100));
+
+
+  function factorial(n) {
+      if (n == 1) return 1;
+      return n * factorial(n-1);
+  };
+
+  console.log('factorial:', factorial(4));
+
+  function fib(n){
+      return n<= 1 ? n: fib(n-1) + fib(n-2);
+  };
+
+  console.log(fib(3));
+  console.log(fib(7));
+
+  let list = {
+      value: 1,
+      next: {
+          value: 2,
+          next: {
+              value: 3,
+              next: {
+                  value: 4,
+                  next: null
+              }
+          }
+      }
+  };
+
+  function printList(list) {
+    let tmp = list;
+      while (tmp) {
+        console.log(tmp.value);
+        tmp = tmp.next;
+    };
+  };
+
+  function printListRec(list) {
+      if (list.next) {
+          printListRec(list.next);
+      };
+      console.log(list.value);
+  };
+
+  console.log(printList(list));
+  console.log(printListRec(list));
+
+
+</script>
+
+</body>
+</html>
