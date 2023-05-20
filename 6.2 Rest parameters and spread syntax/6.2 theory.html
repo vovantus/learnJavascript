@@ -5,6 +5,100 @@
     <title>6.2 Rest parameters and spread syntax</title>
 </head>
 <body>
+ <script>
+     "use strict"
+
+     /**
+      * Когда мы видим "..." в коде, это могут быть как остаточные параметры, так и оператор расширения.
+      *
+      * Как отличить их друг от друга:
+      *
+      * Если ... располагается в конце списка параметров функции, то это «остаточные параметры».
+      * Он собирает остальные неуказанные аргументы и делает из них массив.
+      *
+      * Если ... встретился в вызове функции или где-либо ещё, то это «оператор расширения». Он извлекает элементы из массива.
+      * Полезно запомнить:
+      *
+      * Остаточные параметры используются, чтобы создавать новые функции с неопределённым числом аргументов.
+      * С помощью оператора расширения можно вставить массив в функцию, которая по умолчанию работает с обычным списком аргументов.
+      * Вместе эти конструкции помогают легко преобразовывать наборы значений в массивы и обратно.
+      *
+      * К аргументам функции можно обращаться и по-старому — через псевдомассив arguments.
+      */
+
+
+     function sumAll(...args) {
+         let sum = 0;
+
+         for (let arg of args) sum += arg;
+
+         return sum;
+     }
+
+     console.log( sumAll(1) );
+     console.log( sumAll(1, 2) );
+     console.log( sumAll(1, 2, 3) );
+
+
+     function showName(firstName, lastName, ...titles) {
+         console.log( firstName + ' ' + lastName ); // Юлий Цезарь
+
+         // Оставшиеся параметры пойдут в массив
+         // titles = ["Консул", "Император"]
+         console.log( titles[0] ); // Консул
+         console.log( titles[1] ); // Император
+         console.log( titles.length ); // 2
+     }
+
+     showName("Юлий", "Цезарь", "Консул", "Император");
+
+
+     function showName() {
+         console.log( arguments.length );
+         console.log( arguments[0] );
+         console.log( arguments[1] );
+
+         // Объект arguments можно перебирать
+         // for (let arg of arguments) alert(arg);
+     }
+
+     showName("Юлий", "Цезарь");
+
+     // Вывод: 1, Илья, undefined (второго аргумента нет)
+     showName("Илья");
+
+
+     // у стредлочой функции нет arguments
+
+     function f() {
+         let showArg = () => console.log(arguments[0]);
+         showArg(2);
+     }
+
+     f(1); // 1
+
+
+     let arr = [3, 5, 1];
+     console.log( Math.max(...arr) );
+
+     let arr1 = [1, -2, 3, 4];
+     let arr2 = [8, 3, -8, 1];
+     console.log( Math.max(...arr1, ...arr2) );
+
+
+     let arr3 = [3, 5, 1];
+     let arr4 = [8, 9, 15];
+     let merged = [0, ...arr3, 2, ...arr4];
+     console.log(merged);
+
+     let str = "Привет";
+     console.log( [...str] ); // П,р,и,в,е,т
+
+
+
+
+
+ </script>
 
 </body>
 </html>
