@@ -5,6 +5,24 @@
     <title>toJSON</title>
 </head>
 <body>
+<script>
+    "use strict"
 
+    let str = "test toJson";
+    console.log(JSON.stringify(str));
+
+    let obj = {
+        a: 1,
+        b: 2,
+        c: 3
+    };
+    console.log(JSON.stringify(obj));
+
+    obj.toJSON = function() {
+        return this.a;
+    };
+
+    console.log(JSON.stringify(obj));
+</script>
 </body>
 </html>
