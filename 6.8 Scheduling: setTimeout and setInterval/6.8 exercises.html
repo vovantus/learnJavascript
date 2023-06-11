@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <title>6.8 Scheduling: setTimeout and setInterval</title>
+</head>
+<body>
+  <script>
+    "use strict"
+
+    function printNumbers (from, to) {
+      let counter = from;
+
+      let timer = setInterval(function () {
+        console.log(counter);
+        if (counter>=to) {
+          clearInterval(timer);
+        }
+        counter++;
+        }, 1000);
+
+    }
+
+    //printNumbers(1,5);
+
+
+    function printNumbersTimeout (from, to) {
+      let counter = from;
+
+      setTimeout(function go() {
+        console.log(counter);
+        if (counter < to) {
+          setTimeout(go,1000);
+        }
+        counter++;
+      }, 1000);
+
+    }
+
+    //printNumbersTimeout(1,5);
+
+
+    // let i = 0;
+    //
+    // setTimeout(() => console.log(i), 100); // ?
+    //
+    // // предположим, что время выполнения этой функции >100 мс
+    // for(let j = 0; j < 100000000; j++) {
+    //   i++;
+    // }
+
+
+    let start = Date.now();
+    let times = [];
+
+    setTimeout(function run() {
+        times.push(Date.now() - start); // запоминаем задержку от предыдущего вызова
+
+        if (start + 100 < Date.now()) console.log(times); // показываем задержку через 100 мс
+        else setTimeout(run); // если нужно ещё запланировать
+    });
+
+
+  </script>
+
+</body>
+</html>

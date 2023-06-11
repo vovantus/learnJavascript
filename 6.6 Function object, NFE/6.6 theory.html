@@ -5,6 +5,68 @@
     <title>6.6 Function object, NFE</title>
 </head>
 <body>
+<script>
+    /**
+     * Функции – это объекты.
+     *
+     * Их свойства:
+     *
+     * name – имя функции. Обычно берётся из объявления функции, но если там нет – JavaScript
+     * пытается понять его из контекста.
+     * length – количество аргументов в объявлении функции. Троеточие («остаточные параметры») не считается.
+     * Если функция объявлена как Function Expression (вне основного потока кода) и имеет имя,
+     * тогда это называется Named Function Expression (Именованным Функциональным Выражением).
+     * Это имя может быть использовано для ссылки на себя же, для рекурсивных вызовов и т.п.
+     */
 
+    let sayHi = function() {
+        console.log("Hi");
+    };
+
+    console.log(sayHi.name);
+
+    function f(sayHi = function() {}) {
+        console.log(sayHi.name);
+    }
+
+    f();
+
+
+    function f1(a) {}
+    function f2(a, b) {}
+    function many(a, b, ...more) {}
+
+    console.log(f1.length); // 1
+    console.log(f2.length); // 2
+    console.log(many.length); // 2
+
+
+    function sayHi() {
+        console.log("Hi");
+
+        // давайте посчитаем, сколько вызовов мы сделали
+        sayHi.counter++;
+    }
+    sayHi.counter = 0; // начальное значение
+
+    sayHi(); // Hi
+    sayHi(); // Hi
+
+    console.log( `Вызвана ${sayHi.counter} раза` ); // Вызвана 2 раза
+
+
+    let sayHi = function func(who) {
+        if (who) {
+            console.log(`Hello, ${who}`);
+        } else {
+            func("Guest"); // Теперь всё в порядке
+        }
+    };
+
+    let welcome = sayHi;
+    sayHi = null;
+
+    welcome(); // Hello, Guest (вложенный вызов работает)
+</script>
 </body>
 </html>
