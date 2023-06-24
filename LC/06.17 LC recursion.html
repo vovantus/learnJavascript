@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recursion</title>
+</head>
+<body>
+    <script>
+        "use strict"
+
+        /**  напишите функцию ковертации десятичного числа в двоичное
+         * convertToBinary(decimal_number)
+         *
+         * @param decimal_number
+         * @returns {number}
+         */
+
+        function convertToBinary(decimal_number)
+        {
+            if (decimal_number === 0)
+                return 0;
+            else
+                return (10 * convertToBinary(Math.floor(decimal_number / 2))) + (decimal_number % 2);
+        }
+
+        // console.log(convertToBinary(2)); //10
+        // console.log(convertToBinary(5)); //101
+        // console.log(convertToBinary(16)); //10000
+        // console.log(convertToBinary(129)); //10000001
+
+
+
+        // конструктор для вершин дерева
+        function CreateNode (data, left, right) {
+            return {
+                data: data,  // данные
+                left: left,  // ссылка на левый узел
+                right: right // ссылка на правый
+            }
+        };
+
+
+        // создаем корень дерева
+        let root = new CreateNode(100,null,null);
+        let current = root
+        for (let i = 1; i<=5; i++) {
+
+            let node = new CreateNode(i, null, null);
+            current.left = node;
+            current = node;
+
+        }
+
+        current = root;
+        for (let i = 6; i<=9; i++) {
+
+            let node = new CreateNode(i, null, null);
+            current.right = node;
+            current = node;
+
+        }
+
+        function printTree(root) {
+            if (root) {
+                console.log(root.data);
+                printTree(root.left);
+                printTree(root.right);
+            }
+        }
+
+        printTree(root);
+
+
+        function height(root) {
+            if (root == null) {
+                return 0;
+            }
+
+            let lheight = height(root.left);
+            let rheight = height(root.right);
+
+            return Math.max(lheight, rheight) + 1;
+
+        }
+
+
+        console.log(height(root));
+        console.log(height(root.left.left.right));
+
+
+    </script>
+</body>
+</html>

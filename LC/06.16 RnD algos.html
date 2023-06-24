@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  "use strict"
+
+  function nextGreatestLetter(letters,target) {
+    let right = letters.length-1;
+    let left = 0;
+    let mid;
+    while (left<=right) {
+      mid = ~~((left+right) /2)
+      if (letters[mid] <= target) {
+        left = mid+1;
+      } else {
+        right = mid-1;
+      }
+    }
+
+    return letters[mid] || letters[0];
+
+  }
+
+  console.log(nextGreatestLetter(['b','c','z'],'a'));
+
+
+</script>
+</body>
+</html>

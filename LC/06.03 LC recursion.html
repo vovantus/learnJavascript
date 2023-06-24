@@ -27,28 +27,34 @@
 
 
 
-
+  // конструктор для вершин дерева
   function CreateNode (data, left, right) {
     return {
-      data: data,
-      left: left,
-      right: right
+      data: data,  // данные
+      left: left,  // ссылка на левый узел
+      right: right // ссылка на правый
     }
   };
 
-  let a1 = new CreateNode(10,null,null);
 
+  // создаем корень дерева
+  let root = new CreateNode(10,null,null);
+  let current = root
   for (let i = 1; i<=5; i++) {
-    let value = Math.random();
-    let node = new CreateNode(value, a1, null);
 
-    a1 = node;
+    let node = new CreateNode(i, null, null);
+    current.left = node;
+    current = node;
+
   }
 
-  // let a1 = new CreateNode(10,null,null);
-  // let a2 = new CreateNode(9,a1,null);
-  // let a3 = new CreateNode(8,a2,null);
-  // let a4 = new CreateNode(7,a3,null);
+ function printTree(root) {
+      if (root) {
+          console.log(root.data);
+          printTree(root.left);
+          printTree(root.right);
+      }
+ }
 
   function height(root)
   {
