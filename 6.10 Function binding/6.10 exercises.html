@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6.10 function binding</title>
+</head>
+<body>
+<script>
+  "use strict"
+  function f() {
+    alert( this ); // ?
+  }
+
+  let user = {
+    g: f.bind(null)
+  };
+
+  user.g(); // null
+
+
+
+  function f() {
+    alert(this.name);
+  }
+
+  f = f.bind( {name: "Вася"} ).bind( {name: "Петя" } );
+
+  f(); // Вася
+
+
+
+
+
+  function sayHi() {
+    alert( this.name );
+  }
+  sayHi.test = 5;
+
+  let bound = sayHi.bind({
+    name: "Вася"
+  });
+
+  alert( bound.test ); // undefined
+
+
+  function askPassword(ok, fail) {
+    let password = prompt("Password?", '');
+    if (password == "rockstar") ok();
+    else fail();
+  }
+
+  let user = {
+    name: 'Вася',
+
+    loginOk() {
+      alert(`${this.name} logged in`);
+    },
+
+    loginFail() {
+      alert(`${this.name} failed to log in`);
+    },
+
+  };
+
+  askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+
+
+
+
+
+
+  function askPassword(ok, fail) {
+    let password = prompt("Password?", '');
+    if (password == "rockstar") ok();
+    else fail();
+  }
+
+  let user = {
+    name: 'John',
+
+    login(result) {
+      alert( this.name + (result ? ' logged in' : ' failed to log in') );
+    }
+  };
+
+  askPassword(user.login.bind(user, true), user.bind.login.bind(user, false));
+
+
+
+
+</script>
+
+</body>
+</html>

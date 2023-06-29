@@ -5,6 +5,107 @@
     <title>Title</title>
 </head>
 <body>
+ <script>
 
+     /**
+      * Метод bind возвращает «привязанный вариант» функции func, фиксируя контекст this и первые аргументы arg1, arg2…, если они заданы.
+      *
+      * Обычно bind применяется для фиксации this в методе объекта, чтобы передать его в качестве колбэка. Например, для setTimeout.
+      *
+      * Когда мы привязываем аргументы, такая функция называется «частично применённой» или «частичной».
+      *
+      * Частичное применение удобно, когда мы не хотим повторять один и тот же аргумент много раз. Например,
+      * если у нас есть функция send(from, to) и from всё время будет одинаков для нашей задачи,
+      * то мы можем создать частично применённую функцию и дальше работать с ней.
+      * @type {{firstName: string, sayHi(): void}}
+      */
+     let user = {
+         firstName: "Вася",
+         sayHi() {
+             console.log(`Привет, ${this.firstName}!`);
+         }
+     };
+
+     // setTimeout(function() {
+     //     user.sayHi(); // Привет, Вася!
+     // }, 1000);
+
+
+    // setTimeout(() => user.sayHi(), 1000); // Привет, Вася!
+
+
+
+   //  setTimeout(() => user.sayHi(), 1000);
+
+     // ...в течение 1 секунды
+    // user = { sayHi() { console.log("Другой пользователь в 'setTimeout'!"); } };
+
+     // Другой пользователь в 'setTimeout'!
+
+    console.log('users changed ');
+     let user1 = {
+         firstName: "Вася",
+         sayHi() {
+             console.log(`Привет, ${this.firstName}!`);
+         }
+     };
+
+     let sayHi1 = user.sayHi.bind(user); // (*)
+
+
+
+     setTimeout(user.sayHi.bind(user), 1000); // Привет, Вася!
+     user1.firstName = 'Коля';
+     user1.sayHi();
+
+
+     for (let key in user) {
+         if (typeof user[key] == 'function') {
+             user[key] = user[key].bind(user);
+         }
+     }
+
+
+    // let bound = func.bind(context, [arg1], [arg2], ...);
+
+
+     function mul(a, b) {
+         return a * b;
+     }
+
+     let double = mul.bind(null, 2);
+
+     // alert( double(3) ); // = mul(2, 3) = 6
+     // alert( double(4) ); // = mul(2, 4) = 8
+     // alert( double(5) ); // = mul(2, 5) = 10
+
+
+
+     // partial
+     function partial(func, ...argsBound) {
+         return function(...args) { // (*)
+             return func.call(this, ...argsBound, ...args);
+         }
+     }
+
+     // использование:
+     let user2 = {
+         firstName: "John",
+         say(time, phrase) {
+             console.log(`[${time}] ${this.firstName}: ${phrase}!`);
+         }
+     };
+
+     // добавляем частично применённый метод с фиксированным временем
+     user2.sayNow = partial(user2.say, new Date().getHours() + ':' + new Date().getMinutes());
+
+     user2.sayNow("Hello");
+     // Что-то вроде этого:
+     // [10:00] John: Hello!
+     user2.sayNowBind = user2.say.bind(user2, new Date().getHours() + ':' + new Date().getMinutes());
+     user2.sayNowBind("hello");
+
+
+ </script>
 </body>
 </html>

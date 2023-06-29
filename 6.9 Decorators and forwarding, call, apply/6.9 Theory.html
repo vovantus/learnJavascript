@@ -2,9 +2,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Decorators, forwarding, call, apply</title>
 </head>
 <body>
+<script>
+    "use strict"
+
+    /**
+     * Декоратор – это обёртка вокруг функции, которая изменяет поведение последней.
+     * Основная работа по-прежнему выполняется функцией.
+
+     */
+
+
+    function slow(x) {
+        // здесь могут быть ресурсоёмкие вычисления
+        alert(`Called with ${x}`);
+        return x;
+    }
+
+    function cachingDecorator(func) {
+        let cache = new Map();
+
+        return function(x) {
+            if (cache.has(x)) {    // если кеш содержит такой x,
+                return cache.get(x); // читаем из него результат
+            }
+
+            let result = func(x); // иначе, вызываем функцию
+
+            cache.set(x, result); // и кешируем (запоминаем) результат
+            return result;
+        };
+    }
+
+    slow = cachingDecorator(slow);
+
+    alert( slow(1) ); // slow(1) кешируем
+    alert( "Again: " + slow(1) ); // возвращаем из кеша
+
+    alert( slow(2) ); // slow(2) кешируем
+    alert( "Again: " + slow(2) ); // возвращаем из кеша
+
+
+    /**
+     * Функцию cachingDecorator можно использовать повторно. Мы можем применить её к другой функции.
+     * Логика кеширования является отдельной, она не увеличивает сложность самой slow (если таковая была).
+     * При необходимости мы можем объединить несколько декораторов (речь об этом пойдёт позже).
+     */
+
+
+
+    let worker = {
+        slow(min, max) {
+            alert(`Called with ${min},${max}`);
+            return min + max;
+        }
+    };
+
+    function cachingDecorator(func, hash) {
+        let cache = new Map();
+        return function() {
+            let key = hash(arguments); // (*)
+            if (cache.has(key)) {
+                return cache.get(key);
+            }
+
+            let result = func.call(this, ...arguments); // (**)
+
+            cache.set(key, result);
+            return result;
+        };
+    }
+
+    function hash(args) {
+        return args[0] + ',' + args[1];
+    }
+
+    worker.slow = cachingDecorator(worker.slow, hash);
+
+    alert( worker.slow(3, 5) ); // работает
+    alert( "Again " + worker.slow(3, 5) ); // аналогично (из кеша)
+
+    /**
+     * Вместо func.call(this, ...arguments) мы могли бы написать func.apply(this, arguments)
+     */
+
+    func.call(context, ...args); // передаёт массив как список с оператором расширения
+    func.apply(context, args);   // тот же эффект
+
+    /**
+     * Оператор расширения ... позволяет передавать перебираемый объект args в виде списка в call.
+     * А apply принимает только псевдомассив args.
+     */
+
+
+    /**
+     * Передача всех аргументов вместе с контекстом другой функции называется
+     * «перенаправлением вызова» (call forwarding).
+     */
+
+    let wrapper = function() {
+        return func.apply(this, arguments);
+    };
+
+
+    function hash() {
+        alert( [].join.call(arguments) ); // 1,2
+    }
+
+
+
+</script>
 
 </body>
 </html>
