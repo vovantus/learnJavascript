@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QA</title>
+</head>
+<body>
+<script>
+  let obj = {
+    name: 'Ivan',
+    method(a,b) {
+      console.log(this.name, a, b);
+    }
+  }
+
+  let func = obj.method;
+  func();
+
+  let bindedFunc = func.bind(obj,1);
+  bindedFunc();
+
+  let bindedFunc2 = bindedFunc.bind(obj,2);
+
+  bindedFunc2();
+
+  let obj2 = {
+    name: 'John',
+  }
+
+  let bindedFunc3 = bindedFunc.bind(obj2,3);
+  bindedFunc3();
+
+  console.log(bindedFunc2);
+  console.log(bindedFunc3);
+
+  let bindedFunc4 = bindedFunc.bind(obj,4);
+  bindedFunc4();
+
+
+</script>
+
+</body>
+</html>

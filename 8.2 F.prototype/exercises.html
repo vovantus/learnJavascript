@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function Rabbit() {}
+  Rabbit.prototype = {
+    eats: true
+  };
+
+  let rabbit = new Rabbit();
+
+  //Rabbit.prototype = {};
+ // Rabbit.prototype.eats = false;
+  //delete rabbit.eats;
+  delete Rabbit.prototype.eats;
+
+  console.log( rabbit.eats );
+
+
+  function User(name) {
+    this.name = name;
+  }
+
+  let user = new User('John');
+  let user2 = new user.constructor('Pete');
+
+  console.log( user2.name ); // Pete (сработало!)
+
+
+  function User(name) {
+    this.name = name;
+  }
+  User.prototype = {}; // (*)
+
+  let user = new User('John');
+  let user2 = new user.constructor('Pete');
+
+  alert( user2.name ); // undefined
+
+
+</script>
+
+</body>
+</html>
