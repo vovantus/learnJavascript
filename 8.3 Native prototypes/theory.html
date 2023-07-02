@@ -5,6 +5,61 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+    "use strict"
+
+    /**
+     *
+     * Все встроенные объекты следуют одному шаблону:
+     * Методы хранятся в прототипах (Array.prototype, Object.prototype, Date.prototype и т.д.).
+     * Сами объекты хранят только данные (элементы массивов, свойства объектов, даты).
+     * Примитивы также хранят свои методы в прототипах объектов-обёрток: Number.prototype, String.prototype
+     * , Boolean.prototype. Только у значений undefined и null нет объектов-обёрток.
+     * Встроенные прототипы могут быть изменены или дополнены новыми методами.
+     * Но не рекомендуется менять их. Единственная допустимая причина – это добавление нового
+     * метода из стандарта, который ещё не поддерживается движком JavaScript.
+     *
+     */
+    function f() {}
+
+    alert(f.__proto__ == Function.prototype); // true
+    alert(f.__proto__.__proto__ == Object.prototype); // true, наследует от Object
+
+    String.prototype.show = function() {
+        alert(this);
+    };
+
+    "BOOM!".show(); // BOOM!
+
+
+
+    if (!String.prototype.repeat) { // Если такого метода нет
+                                    // добавляем его в прототип
+
+        String.prototype.repeat = function(n) {
+            // повторить строку n раз
+
+            // на самом деле код должен быть немного более сложным
+            // (полный алгоритм можно найти в спецификации)
+            // но даже неполный полифил зачастую достаточно хорош для использования
+            return new Array(n + 1).join(this);
+        };
+    }
+
+    alert( "La".repeat(3) ); // LaLaLa
+
+
+
+    let obj = {
+        0: "Hello",
+        1: "world!",
+        length: 2,
+    };
+
+    obj.join = Array.prototype.join;
+
+    alert( obj.join(',') ); // Hello,world!
+</script>
 
 </body>
 </html>

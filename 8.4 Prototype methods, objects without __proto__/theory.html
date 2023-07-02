@@ -5,6 +5,67 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+    "use strict"
+    /**
+     *
+     * Object.create(proto, [descriptors]) – создаёт пустой объект со свойством [[Prototype]], указанным как proto, и необязательными дескрипторами свойств descriptors.
+     * Object.getPrototypeOf(obj) – возвращает свойство [[Prototype]] объекта obj.
+     * Object.setPrototypeOf(obj, proto) – устанавливает свойство [[Prototype]] объекта obj как proto.
+     *
+     *
+     * Object.keys(obj) / Object.values(obj) / Object.entries(obj) – возвращают массив всех перечисляемых собственных строковых ключей/значений/пар ключ-значение.
+     * Object.getOwnPropertySymbols(obj) – возвращает массив всех собственных символьных ключей.
+     * Object.getOwnPropertyNames(obj) – возвращает массив всех собственных строковых ключей.
+     * Reflect.ownKeys(obj) – возвращает массив всех собственных ключей.
+     * obj.hasOwnProperty(key): возвращает true, если у obj есть собственное (не унаследованное) свойство с именем key.
+     * Все методы, которые возвращают свойства объектов (такие как Object.keys и другие), возвращают «собственные» свойства.
+     * Если мы хотим получить и унаследованные, можно воспользоваться циклом for..in.
+    */
+
+    let animal = {
+        eats: true
+    };
+
+    // создаём новый объект с прототипом animal
+    let rabbit = Object.create(animal);
+
+    alert(rabbit.eats); // true
+
+    alert(Object.getPrototypeOf(rabbit) === animal); // получаем прототип объекта rabbit
+
+    Object.setPrototypeOf(rabbit, {}); // заменяем прототип объекта rabbit на {}
+
+
+
+    let animal = {
+        eats: true
+    };
+
+    let rabbit = Object.create(animal, {
+        jumps: {
+            value: true
+        }
+    });
+
+    alert(rabbit.jumps); // true
+
+    // клон obj c тем же прототипом (с поверхностным копированием свойств)
+    let clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));
+
+
+    let obj = Object.create(null);
+
+    let key = prompt("What's the key?", "__proto__");
+    obj[key] = "some value";
+
+    alert(obj[key]); // "some value"
+
+
+    let obj = Object.create(null);
+
+    alert(obj); // Ошибка (no toString)
+</script>
 
 </body>
 </html>
