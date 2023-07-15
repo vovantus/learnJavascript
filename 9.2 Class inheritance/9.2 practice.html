@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<script src="clock.js"></script>
+<script>
+  "use strict"
+
+  class Animal {
+
+    constructor(name) {
+      this.name = name;
+    }
+
+  }
+
+  class Rabbit extends Animal {
+    constructor(name) {
+      super(name);
+      this.name = name;
+      this.created = Date.now();
+    }
+  }
+
+  let rabbit = new Rabbit("Белый кролик"); // Error: this is not defined
+  alert(rabbit.name);
+
+  class ExtendedClock extends Clock {
+    constructor({template}, precision = 1000 ) {
+      super({template});
+      this.millis = precision;
+    }
+
+    start() {
+      this.render();
+      this.timer = setInterval(() => this.render(), this.millis);
+    }
+  }
+
+  let cl = new ExtendedClock({template: 'h:m:s'},  500);
+  cl.start();
+</script>
+
+</body>
+</html>

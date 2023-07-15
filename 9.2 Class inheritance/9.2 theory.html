@@ -6,5 +6,143 @@
 </head>
 <body>
 
+<script>
+    class Animal {
+        constructor(name) {
+            this.speed = 0;
+            this.name = name;
+        }
+        run(speed) {
+            this.speed = speed;
+            console.log(`${this.name} бежит со скоростью ${this.speed}.`);
+        }
+        stop() {
+            this.speed = 0;
+            console.log(`${this.name} стоит неподвижно.`);
+        }
+    }
+
+    let animal = new Animal("Мой питомец");
+
+
+    class Rabbit extends Animal {
+
+        constructor(name, earLength) {
+            super(name);
+            this.earLength = earLength;
+        }
+        hide() {
+            console.log(`${this.name} прячется!`);
+        }
+        stop() {
+            super.stop(); // вызываем родительский метод stop
+            this.hide(); // и затем hide
+        }
+    }
+
+    let rabbit = new Rabbit("Белый кролик");
+
+    rabbit.run(5); // Белый кролик бежит со скоростью 5.
+    rabbit.hide();// Белый кролик прячется!
+    rabbit.stop();
+
+    let rabbit2 = new Rabbit("Белый кролик", 10);
+    console.log(rabbit2.name); // Белый кролик
+    console.log(rabbit2.earLength); // 10
+
+
+    // function f(phrase) {
+    //     return class {
+    //         sayHi() { console.log(phrase); }
+    //     };
+    // }
+    //
+    // class User extends f("Привет") {}
+    //
+    // new User().sayHi(); // Привет
+
+
+    // class Rabbit extends Animal {
+    //     stop() {
+    //         setTimeout(() => super.stop(), 1000); // вызывает родительский stop после 1 секунды
+    //     }
+    // }
+
+
+
+    // class Rabbit extends Animal {
+    //     // генерируется для классов-потомков, у которых нет своего конструктора
+    //     constructor(...args) {
+    //         super(...args);
+    //     }
+    // }
+
+
+    class Animal3 {
+        name = 'animal';
+
+        constructor() {
+            console.log(this.name); // (*)
+        }
+    }
+
+    class Rabbit3 extends Animal3 {
+        name = 'rabbit';
+    }
+
+    new Animal3(); // animal
+    new Rabbit3(); // animal
+
+
+
+    class Animal4 {
+        showName() {  // вместо this.name = 'animal'
+            console.log('animal');
+        }
+
+        constructor() {
+            this.showName(); // вместо alert(this.name);
+        }
+    }
+
+    class Rabbit4 extends Animal4 {
+        showName() {
+            console.log('rabbit');
+        }
+    }
+
+    new Animal4(); // animal
+    new Rabbit4(); // rabbit
+
+
+
+    let animal5 = {
+        name: "Животное",
+        eat() {         // animal.eat.[[HomeObject]] == animal
+            alert(`${this.name} ест.`);
+        }
+    };
+
+    let rabbit5 = {
+        __proto__: animal5,
+        name: "Кролик",
+        eat() {         // rabbit.eat.[[HomeObject]] == rabbit
+            super.eat();
+        }
+    };
+
+    let longEar = {
+        __proto__: rabbit5,
+        name: "Длинноух",
+        eat() {         // longEar.eat.[[HomeObject]] == longEar
+            super.eat();
+        }
+    };
+
+    // работает верно
+    longEar.eat();  // Длинноух ест.
+
+</script>
+
 </body>
 </html>

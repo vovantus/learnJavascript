@@ -5,6 +5,159 @@
     <title>9.1 Class basic syntax</title>
 </head>
 <body>
+<script>
+    "use strict"
+    class User {
+
+        constructor(name) {
+            this.name = name;
+        }
+
+        sayHi() {
+            console.log(this.name);
+        }
+
+    }
+
+    // Использование:
+    let user = new User("Иван");
+    user.sayHi();
+    console.log(user);
+
+
+
+    // класс - это функция
+    console.log(typeof User); // function
+
+    // ...или, если точнее, это метод constructor
+    console.log(User === User.prototype.constructor); // true
+
+    // Методы находятся в User.prototype, например:
+    console.log(User.prototype.sayHi); // sayHi() { alert(this.name); }
+
+    // в прототипе ровно 2 метода
+    console.log(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
+
+
+    // перепишем класс User на чистых функциях
+
+    // 1. Создаём функцию constructor
+    function UserPure(name) {
+        this.name = name;
+    }
+    // каждый прототип функции имеет свойство constructor по умолчанию,
+    // поэтому нам нет необходимости его создавать
+
+    // 2. Добавляем метод в прототип
+    UserPure.prototype.sayHi = function() {
+        console.log(this.name);
+    };
+
+    // Использование:
+    let user1 = new UserPure("Иван");
+    user1.sayHi();
+
+
+
+    class UserTmp {
+        constructor() {}
+    }
+
+    console.log(typeof UserTmp); // function
+    //UserTmp(); // Error: Class constructor User cannot be invoked without 'new'
+    console.log(UserTmp); // class User { ... }
+
+
+    // "Named Class Expression"
+    // (в спецификации нет такого термина, но происходящее похоже на Named Function Expression)
+    let User1 = class MyClass1 {
+        sayHi() {
+            console.log(MyClass1); // имя MyClass видно только внутри класса
+        }
+    };
+
+    new User1().sayHi(); // работает, выводит определение MyClass
+
+   // console.log(MyClass1); // ошибка, имя MyClass не видно за пределами класса
+
+
+    function makeClass(phrase) {
+        // объявляем класс и возвращаем его
+        return class {
+            sayHi() {
+                console.log(phrase);
+            };
+        };
+    }
+
+    // Создаём новый класс
+    let User2 = makeClass("Привет");
+
+    new User2().sayHi(); // Привет
+
+
+    class User3 {
+
+        constructor(name) {
+            // вызывает сеттер
+            this.name = name;
+        }
+
+        get name() {
+            return this._name;
+        }
+
+        set name(value) {
+            if (value.length < 4) {
+                console.log("Имя слишком короткое.");
+                return;
+            }
+            this._name = value;
+        }
+
+    }
+
+    let user3 = new User3("Иван");
+    console.log(user3.name); // Иван
+
+    user3 = new User3(""); // Имя слишком короткое.
+
+
+
+    Object.defineProperties(User.prototype, {
+        name: {
+            get() {
+                return this._name
+            },
+            set(name) {
+                // ...
+            }
+        }
+    });
+
+
+    class User5 {
+
+        ['say' + 'Hi']() {
+            console.log("Привет");
+        }
+
+    }
+
+    new User5().sayHi();
+
+
+    class UserAnon {
+        name = "Аноним";
+
+        sayHi() {
+            console.log(`Привет, ${this.name}!`);
+        }
+    }
+
+    let userAnon = new UserAnon().sayHi();
+
+</script>
 
 </body>
 </html>
