@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    "use strict"
+    /**
+     * Доктор принимает с 9 утра до 9 вечера.
+     * Часть времени у него занята: приемы, обед, уборка кабинета.
+     *
+     *
+     * busy = [
+     * {'start' : '10:30',
+     * 'stop' : '10:50'
+     * },
+     * {'start' : '18:40',
+     * 'stop' : '18:50'
+     * },
+     * {'start' : '14:40',
+     * 'stop' : '15:50'
+     * },
+     * {'start' : '16:40',
+     * 'stop' : '17:20'
+     * },
+     * {'start' : '20:05',
+     * 'stop' : '20:20'
+     * }
+     * ]
+     *
+     * Требуется сформировать список свободных окон по 30 минут.
+     *
+     */
+
+    const busyHours = [
+        {
+            'start': '10:30',
+            'stop': '10:50'
+        },
+        {
+            'start': '18:40',
+            'stop': '18:50'
+        },
+        {
+            'start': '14:40',
+            'stop': '15:50'
+        },
+        {
+            'start': '16:40',
+            'stop': '17:20'
+        },
+        {
+            'start': '20:05',
+            'stop': '20:20'
+        }
+    ]
+
+    function printSchedule(busyHours) {
+        let schedule = [];
+        let startTime = new Date();
+        let endTime = new Date();
+        let nextPeriodStart;
+        let intervalFits;
+        startTime.setHours(9, 0, 0);
+        endTime = new Date(startTime.getTime() + 30 * 60 * 1000);
+        let busySlotsWithTime = convertSlots(busyHours);
+
+        do {
+            [intervalFits, nextPeriodStart] = checkSlot(startTime, endTime, busySlotsWithTime);
+            if (intervalFits) {
+                schedule.push({
+                    start: String(startTime.getHours()) + ':' + String(startTime.getMinutes() === 0 ? '00' : startTime.getMinutes()),
+                    stop: String(endTime.getHours()) + ':' + String(endTime.getMinutes() === 0 ? '00' : endTime.getMinutes()),
+                });
+                startTime = new Date(endTime.getTime());
+            } else {
+                startTime = new Date(nextPeriodStart);
+            }
+            ;
+            endTime = new Date(startTime.getTime() + 30 * 60 * 1000);
+        } while (endTime.getHours() < 21);
+
+        return schedule;
+    }
+
+    function checkSlot(start, stop, busyHours) {
+        for (let slot of busyHours) {
+            if (!((start >= slot.stop) || (stop <= slot.start))) {
+                return [false, slot.stop];
+            }
+        }
+        return [true, null];
+    }
+
+    function convertSlots(busySlots) {
+        let slots = [];
+        for (let slot of busySlots) {
+
+            let hour = slot.start.slice(0, 2);
+            let min = slot.start.slice(3, 5);
+            let intStart = new Date();
+            intStart.setHours(parseInt(hour), parseInt(min), 0);
+
+            hour = slot.stop.slice(0, 2);
+            min = slot.stop.slice(3, 5);
+            let intStop = new Date();
+            intStop.setHours(parseInt(hour), parseInt(min), 0);
+            slots.push({
+                start: intStart,
+                stop: intStop,
+            });
+
+        }
+        slots.sort((a, b) => {
+            let aVal = a.start.getHours() + a.start.getMinutes() / 60;
+            let bVal = b.start.getHours() + b.start.getMinutes() / 60;
+            if (aVal > bVal) return 1;
+            if (aVal == bVal) return 0;
+            if (aVal < bVal) return -1;
+        });
+        return slots;
+    };
+
+    //console.log(convertSlots(busyHours));
+
+   // console.log(printSchedule(busyHours));
+
+
+    //*****************
+    // Vadim solution
+    //*****************
+
+    // Время работы доктора
+    const startTime = new Date('2023-07-18T09:00:00');
+    const endTime = new Date('2023-07-18T21:00:00');
+
+    // Занятые интервалы времени
+    const busy = [
+        {start: '10:30', stop: '10:50'},
+        {start: '18:40', stop: '18:50'},
+        {start: '14:40', stop: '15:50'},
+        {start: '16:40', stop: '17:20'},
+        {start: '20:05', stop: '20:20'}
+    ];
+
+    // Функция для форматирования времени в формат HH:MM
+    function formatTime(date) {
+        return date.toTimeString().slice(0, 5);
+    }
+
+    // Генерация списка свободных окон
+    const freeWindows = [];
+    let currentTime = new Date(startTime);
+
+    while (currentTime < endTime) {
+        let isBusy = false;
+
+        for (const interval of busy) {
+            const busyStart = new Date(`2023-07-18T${interval.start}:00`);
+            const busyStop = new Date(`2023-07-18T${interval.stop}:00`);
+
+            if (currentTime >= busyStart && currentTime < busyStop) {
+                isBusy = true;
+                currentTime = busyStop;
+                break;
+            }
+        }
+
+        if (!isBusy) {
+            const freeStart = new Date(currentTime);
+            const freeStop = new Date(currentTime.getTime() + 30 * 60000); // 30 minutes
+            freeWindows.push({
+                start: formatTime(freeStart),
+                stop: formatTime(freeStop)
+            });
+            currentTime = freeStop;
+        }
+    }
+
+    // Вывод результатов
+    // for (let i = 0; i < freeWindows.length; i++) {
+    //     const window = freeWindows[i];
+    //     console.log(`${i + 1}. ${window.start} - ${window.stop}`);
+    // }
+
+    //*****************
+    // ChatGPT solution
+    //*****************
+
+    const convertTimeToMinutes = time => {
+        const [hours, minutes] = time.split(':').map(Number);
+        return hours * 60 + minutes;
+    };
+
+    const convertMinutesToTime = minutes => {
+        const hours = Math.floor(minutes / 60);
+        const mins = minutes % 60;
+        return `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}`;
+    };
+
+    const createBusySlotsInMinutes = busyHours => {
+        return busyHours.map(slot => ({
+            start: convertTimeToMinutes(slot.start),
+            stop: convertTimeToMinutes(slot.stop)
+        })).sort((a, b) => a.start - b.start);
+    };
+
+    const generateAvailableSchedule = (busyHours, workStart = '09:00', workEnd = '21:00', slotDuration = 30) => {
+        const workStartMinutes = convertTimeToMinutes(workStart);
+        const workEndMinutes = convertTimeToMinutes(workEnd);
+        const busySlotsInMinutes = createBusySlotsInMinutes(busyHours);
+
+        let currentTime = workStartMinutes;
+        const availableSlots = [];
+
+        while (currentTime < workEndMinutes) {
+            let slotStart = currentTime;
+            let slotEnd = currentTime + slotDuration;
+
+            const conflictingSlot = busySlotsInMinutes.find(slot => !(slot.start >= slotEnd || slot.stop <= slotStart));
+
+            if (conflictingSlot) {
+                currentTime = conflictingSlot.stop;
+                continue;
+            }
+
+            if (slotEnd > workEndMinutes) break;
+
+            availableSlots.push({
+                start: convertMinutesToTime(slotStart),
+                stop: convertMinutesToTime(slotEnd),
+            });
+
+            currentTime = slotEnd;
+        }
+
+        return availableSlots;
+    };
+
+
+
+    console.log(generateAvailableSchedule(busyHours));
+
+</script>
+
+</body>
+</html>
