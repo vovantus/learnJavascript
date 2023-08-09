@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>''</title>
+</head>
+<body>
+<script>
+  'use strict'
+  function isLeapYear(year) {
+    if (year % 4 == 0) {
+      if (year % 100 == 0) {
+        if (year % 400 == 0) {
+          return true
+        }
+        return false
+      }
+      return true
+    }
+    return false
+  }
+
+  // console.log(isLeapYear(2020)); // Ожидаемый результат: true
+  // console.log(isLeapYear(2021)); // Ожидаемый результат: false
+  // console.log(isLeapYear(1900)); // Ожидаемый результат: false
+  // console.log(isLeapYear(2000)); // Ожидаемый результат: true
+  // console.log(isLeapYear(1600)); // Ожидаемый результат: true
+  // console.log(isLeapYear(1700)); // Ожидаемый результат: false
+
+
+
+  // Задача 2
+  // Группировка элементов по ключу.
+
+  // Напишите функцию, которая принимает массив объектов и ключ, по
+  // которому нужно сгруппировать объекты. Верните объект, где ключами будут
+  // уникальные значения из массива, а значениями — массивы объектов с соответствующим ключом.
+
+
+  function groupObjectsByKey (arr, key) {
+    let keys = arr.reduce((acc,item) => {
+      if (acc.indexOf(item[key]) == -1) {
+        acc.push(item[key])
+      }
+      return acc
+    },[]);
+    let result = arr.reduce((acc,item) => {
+      keys.forEach((it) => {
+        if (item[key] == it) {
+          if (acc[it] == null) {
+            acc[it] = [];
+          }
+          acc[it].push(item);
+        }
+      });
+      return acc;
+    },{});
+    return result;
+  }
+
+  const orders = [
+      { id: 1, product: 'apple', quantity: 5 },
+      { id: 2, product: 'banana', quantity: 3 },
+      { id: 3, product: 'apple', quantity: 2 },
+      { id: 4, product: 'banana', quantity: 1 }
+  ];
+
+  const groupedByProduct = groupObjectsByKey(orders, 'product');
+  // console.log(groupedByProduct);
+
+
+
+  // Задача 3
+  // Частота слов.
+
+  // Напишите функцию, которая принимает строку и возвращает объект, в котором ключами будут слова из строки, а значениями — количество раз, которое каждое слово встречается.
+
+  function countWordFrequency(text) {
+    let words = text.split(' ');
+    let res = {};
+
+    words.forEach((it) => {
+      if (res[it] == null) {
+        res[it] = 0;
+      }
+      res[it] +=1;
+    })
+    return res;
+  }
+
+
+  // Тесты
+  // const text = "apple banana apple orange banana apple";
+  // const wordFrequency = countWordFrequency(text);
+  // console.log(wordFrequency);
+
+  // Ожидаемый результат:
+  // {
+  //   apple: 3,
+  //   banana: 2,
+  //   orange: 1
+  // }
+
+
+  // ___________________________________________________________________
+
+  // Задача 4
+  // Вычисление суммы четных чисел.
+
+  // Напишите функцию, которая принимает массив чисел и использует метод reduce для вычисления суммы всех четных чисел в массиве.
+
+  function calculateEvenSum(numbers) {
+    return numbers.reduce((acc,item)=>{ return item % 2 == 0 ? acc+=item : acc},0);
+  }
+
+
+
+  // Тест
+  const numbers = [1, 2, 3, 4, 5, 6];
+  const evenSum = calculateEvenSum(numbers);
+  console.log(evenSum);
+
+  // Ожидаемый результат: 12 (2 + 4 + 6)
+</script>
+
+</body>
+</html>
