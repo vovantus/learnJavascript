@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+    /**
+   * Задача:
+   *
+   * Вам поручено разработать всестороннюю систему каталога библиотеки для средней библиотеки. Ваша реализация должна включать в себя следующие функции:
+   *
+   * Класс Книги:
+   * Создайте класс Книги со следующими свойствами:
+   * id: Идентификатор книги.
+   * title: Заголовок книги.
+   * author: Автор книги.
+   * genre: Жанр книги.
+   * isAvailable: Статус доступности книги (булевое значение, значение по умолчанию: true).
+   * dueDate: Дата, когда книгу нужно вернуть (объект Date, изначально установлен на null). Когда книга берется в аренду, устанавливайте дату возврата через 14 дней от даты взятия в аренду.
+   *
+   * Класс Библиотеки:
+   * Создайте класс Библиотеки со следующими свойствами:
+   * libraryName: Название библиотеки.
+   * libraryCatalog: Массив для хранения экземпляров класса Книга.
+   *
+   * Методы класса Библиотеки:
+   * addBook(book): Добавляет новую книгу в libraryCatalog.
+   * findBookById(id): Находит и возвращает книгу по ее id.
+   * borrowBook(id): Берет книгу в аренду по id. Обновляет свойство isAvailable на false и устанавливает дату возврата через 14 дней от даты взятия в аренду.
+   * returnBook(id): Возвращает взятую в аренду книгу по id. Обновляет свойство isAvailable на true и сбрасывает дату возврата на null.
+   * getOverdueBooks(): Возвращает массив книг, которые в настоящее время просрочены по дате возврата.
+   * Инструкции:
+   *
+   *
+   * Убедитесь, что дата возврата устанавливается точно при аренде книги.
+   * Предположите, что каталог библиотеки изначально пуст.
+   *  */
+  /**
+  *
+  *
+  *
+  * // // Test Data
+  * // const library = new Library("Community Library");
+  *
+  * // const book1 = new Book(1, "The Catcher in the Rye", "J.D. Salinger", "Classic");
+  * // const book2 = new Book(2, "To Kill a Mockingbird", "Harper Lee", "Fiction");
+  * // const book3 = new Book(3, "1984", "George Orwell", "Science Fiction");
+  *
+  * // library.addBook(book1);
+  * // library.addBook(book2);
+  * // library.addBook(book3);
+  *
+  * // // Test addBook method
+  * // console.log("Initial Library Catalog:", library.libraryCatalog);
+  *
+  * // // Test borrowBook method
+  * // const borrowed1 = library.borrowBook(1);
+  * // const borrowed2 = library.borrowBook(2);
+  * // const borrowed3 = library.borrowBook(3);
+  * // const alreadyBorrowed = library.borrowBook(1); // Trying to borrow the same book again
+  *
+  * // console.log("After Borrowing:", library.libraryCatalog);
+  * // console.log("Borrowed 1:", borrowed1); // Should be true
+  * // console.log("Borrowed 2:", borrowed2); // Should be true
+  * // console.log("Borrowed 3:", borrowed3); // Should be true
+  * // console.log("Already Borrowed:", alreadyBorrowed); // Should be false
+  *
+  * // // Test returnBook method
+  * // const returned1 = library.returnBook(1);
+  * // const returned2 = library.returnBook(2);
+  * // const returned3 = library.returnBook(3);
+  * // const alreadyReturned = library.returnBook(1); // Trying to return the same book again
+  *
+  * // console.log("After Returning:", library.libraryCatalog);
+  * // console.log("Returned 1:", returned1); // Should be true
+  * // console.log("Returned 2:", returned2); // Should be true
+  * // console.log("Returned 3:", returned3); // Should be true
+  * // console.log("Already Returned:", alreadyReturned); // Should be false
+  *
+  * // // Test getOverdueBooks method
+  * // const overdueBooks = library.getOverdueBooks(new Date()); // Pass current date to check for overdue books
+  *
+  * // console.log("Overdue Books:", overdueBooks);
+  *
+  * // // Test findBookById method
+  * // const foundBook = library.findBookById(2);
+  * // const notFoundBook = library.findBookById(4);
+  *
+  * // console.log("Found Book:", foundBook);
+  * // console.log("Not Found Book:", notFoundBook);
+   */
+</script>
+
+</body>
+</html>

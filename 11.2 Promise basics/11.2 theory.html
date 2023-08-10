@@ -5,6 +5,77 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+    "use strict"
+    let promise = new Promise(function(resolve, reject) {
+        setTimeout(() => resolve("done!"), 1000);
+    });
+
+    // resolve запустит первую функцию, переданную в .then
+    promise.then(
+        result => console.log(result), // выведет "done!" через одну секунду
+        error => alert(error) // не будет запущена
+    );
+
+
+    let promise1 = new Promise(function(resolve, reject) {
+        setTimeout(() => reject(new Error("Whoops!")), 1000);
+    });
+
+    // reject запустит вторую функцию, переданную в .then
+    promise1.then(
+        result => alert(result), // не будет запущена
+        error => console.log('1' + error) // выведет "Error: Whoops!" спустя одну секунду
+    );
+    // .catch(f) это то же самое, что promise.then(null, f)
+    promise1.catch(error => console.log('2' + error)); // выведет "Error: Ошибка!" спустя одну секунду
+
+    // .then(null, errorHandlingFunction)
+
+    //
+    // new Promise((resolve, reject) => {
+    //     /* сделать что-то, что займёт время, и после вызвать resolve или может reject */
+    // })
+    //     // выполнится, когда промис завершится, независимо от того, успешно или нет
+    //     .finally(() => остановить индикатор загрузки)
+    // // таким образом, индикатор загрузки всегда останавливается, прежде чем мы продолжим
+    // .then(result => показать результат, err => показать ошибку)
+
+    new Promise((resolve, reject) => {
+        setTimeout(() => resolve("value"), 2000);
+    })
+        .finally(() => console.log("Промис завершён")) // срабатывает первым
+        .then(result => console.log(result)); // <-- .then показывает "value"
+
+
+    new Promise((resolve, reject) => {
+        throw new Error("error");
+    })
+        .finally(() => alert("Промис завершён")) // срабатывает первым
+        .catch(err => alert(err));  // <-- .catch показывает ошибку
+
+
+    function loadScript(src) {
+        return new Promise(function(resolve, reject) {
+            let script = document.createElement('script');
+            script.src = src;
+
+            script.onload = () => resolve(script);
+            script.onerror = () => reject(new Error(`Ошибка загрузки скрипта ${src}`));
+
+            document.head.append(script);
+        });
+    }
+
+    let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
+
+    promise.then(
+        script => alert(`${script.src} загружен!`),
+        error => alert(`Ошибка: ${error.message}`)
+    );
+
+    promise.then(script => alert('Ещё один обработчик...'));
+</script>
 
 </body>
 </html>
