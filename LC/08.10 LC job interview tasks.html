@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  // function a (arg) {
+  //   return () => arg;
+  // }
+
+  let a = (arg) => () => arg;
+
+  console.log(a(5)()==5);
+
+
+  const obj = [
+    {
+      prop: 2,
+      name: "a",
+      children: [
+        {
+          prop: 3,
+          name: "b",
+          children: "guf rip",
+        },
+        { prop: 2,
+          name: "a" },
+        { prop: 3,
+          name: "b" },
+      ],
+    },
+    {
+      prop: 5,
+      name: "s",
+      children: [{}, {}],
+    },
+  ];
+
+  // function count(obj,name) {
+  //   let result = 0;
+  //
+  //   for (let ob of obj) {
+  //     if (ob.name == name) {
+  //       result += ob.prop;
+  //     }
+  //     if (Array.isArray(ob.children)){
+  //       result += count(ob.children,name);
+  //     }
+  //   }
+  //   return result;
+  // }
+  //
+  // console.log(count(obj,'a'));
+
+
+  function count() {
+    count.calls++;
+    return count;
+  }
+
+  count.calls = 0;
+  count[Symbol.toPrimitive] = function (hint) {
+    if (hint == 'number') {
+      return this.calls;
+    }
+  }
+
+
+
+  console.log(+count()()()()()()==6);
+
+</script>
+</body>
+</html>
