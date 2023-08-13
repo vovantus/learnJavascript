@@ -5,6 +5,30 @@
     <title>Title</title>
 </head>
 <body>
+<script>
+    // let promise = Promise.resolve();
+    //
+    // promise.then(() => alert("промис выполнен"));
+    //
+    // alert("код выполнен"); // этот alert показывается первым
+    //
+    // Promise.resolve()
+    //     .then(() => alert("промис выполнен!"))
+    //     .then(() => alert("код выполнен"));
+
+    // let promise = Promise.reject(new Error("Ошибка в промисе!"));
+    //
+    // // Ошибка в промисе!
+    // window.addEventListener('unhandledrejection', event => alert(event.reason));
+
+
+    let promise = Promise.reject(new Error("Ошибка в промисе!"));
+
+    setTimeout(() => promise.catch(err => alert('поймана')), 1000);
+
+    // Ошибка в промисе!
+    window.addEventListener('unhandledrejection', event => alert(event.reason));
+</script>
 
 </body>
 </html>
