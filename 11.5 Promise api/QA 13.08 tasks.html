@@ -15,9 +15,20 @@
 
     ];
 
+    let i = 0;
+
+
+    let slowProm = [new Promise(resolve => {
+        console.log('slow!')
+        do {
+            i++;
+        } while (i % 1e6 != 0);
+        setTimeout(() => resolve(1), 3000)
+    })]
+
 
     let requests = urls.map(url => fetch(url));
-
+    requests.unshift(slowProm);
 
     Promise.all(requests)
         .then(responses => responses.forEach(
