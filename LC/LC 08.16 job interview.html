@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  /**
+   *
+   */
+  "use strict"
+
+  // На фронт приходят кривые данные. Для каждого пользователя выдается список его любимых героев,
+  // но нужно чтобы каждый герой имел список фанатов, исправь это.
+  const favoriteHero = (data) => {
+    let heroes = [];
+    for (let user of data) {
+      let name = user[0];
+      for (let i = 1; i < user.length; i++) {
+
+        let heroIndex = heroes.findIndex(item => item[0] === user[i]);
+
+        if (heroIndex === -1){
+          heroes.push([user[i], name]);
+        } else {
+          heroes[heroIndex].push(name);
+        }
+      }
+    }
+
+    return heroes;
+
+
+
+  }
+
+  console.log(
+          favoriteHero([
+            ['Женя', 'Тор', 'Веном', 'Халк'],
+            ['Саша', 'Аквамен', 'Веном'],
+            ['Аня', 'Тор', 'Аквамен']
+          ])
+  );
+  // [
+  //   ['Тор', 'Женя', 'Аня'],
+  //   ['Веном', 'Женя', 'Саша'],
+  //   ['Халк', 'Женя'],
+  //   ['Аквамен', 'Саша', 'Аня']
+  // ]
+
+
+  //Задача 2.
+  // Нужно найти самые большие числа
+  // в группах по три элемента
+  // итеративно сдвигая рамку на плюс один:
+  // 1, 3, -1 —> 3
+  // 3, -1, 5 —> 5
+  // -1, 5, 7 —> 7
+
+  const getLocalMax = (arr, localeSize) => {
+    let result = [];
+    for (let i = 0; i<=arr.length - localeSize;i++){
+      let window = arr.slice(i,i+localeSize);
+      console.log(Math.max(...window));
+      result.push(Math.max(...window));
+    }
+    return result;
+  }
+
+  console.log(getLocalMax([1, 3, -1, 5, 7], 3));
+  // [3, 5, 7]
+
+  console.log(getLocalMax([1, 3, -1, -3, 5, 1, 1, 1, 2], 3));
+  // [3, 3, 5, 5, 5, 1, 2]
+
+</script>
+
+</body>
+</html>

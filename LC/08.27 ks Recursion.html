@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+   // TCO оптимизация хвостовой рекурсии
+
+    function factorial(n) {
+        if (n===0) {
+            return 1
+        } else {
+            return n*factorial(n-1)
+        }
+    }
+
+    function factorial(n,acc) {
+        if (n===0) {
+            return acc
+        } else {
+            return factorial(n-1, n*acc)
+        }
+    }
+
+
+
+
+    function recursiveSum(arr, index = 0) {
+    if (index >= arr.length) {
+      return 0;
+    }
+    return arr[index] + recursiveSum(arr, index + 1);
+  }
+  const array = [10, 10,10,10, 5];
+  const sum1 = recursiveSum(array);
+  console.log(sum1);
+
+</script>
+</body>
+</html>
