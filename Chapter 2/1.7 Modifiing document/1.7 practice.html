@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Web Page</title>
+</head>
+<body>
+    <ol id="elem">
+        <li>Привет</li>
+        <li>Мир</li>
+      </ol>
+      
+      <script>
+       
+        function clear(elem) { 
+            elem.innerHTML = ''
+         }
+      
+        clear(elem); // очищает список
+      </script>
+
+
+<table id="table">
+    aaa
+    <tr>
+      <td>Тест</td>
+    </tr>
+  </table>
+  
+  <script>
+    alert(table); // таблица, как и должно быть
+  
+   // table.remove();
+    // почему в документе остался текст "ааа"?
+  </script>
+
+
+<script>
+    
+    const ul = document.createElement('ul');
+    elem.after(ul);
+    while (false ){
+        let todo = prompt('введите элемент списка','');
+        if (!todo) {
+            break;
+        }
+        const li = document.createElement('li');
+        li.textContent = todo;
+        ul.append(li);
+        todo = prompt('введите элемент списка','');
+    }
+ </script>
+
+<script>
+    let data = {
+                "Рыбы": {
+                    "форель": {},
+                    "лосось": {}
+                },
+
+                "Деревья": {
+                    "Огромные": {
+                        "секвойя": {},
+                        "дуб": {}
+                    },
+                    "Цветковые": {
+                        "яблоня": {},
+                        "магнолия": {}
+                    }
+                }
+                };
+
+    function createList(data) {
+        const ul = document.createElement('ul');
+
+        for (let key of Object.keys(data)) {
+            const li =document.createElement('li');
+            li.insertAdjacentHTML('afterbegin', key);
+            if (Object.keys(data[key]).length !== 0) {
+                li.append(createList(data[key]))
+            }    
+            ul.append(li)      
+        }
+
+        return ul;
+
+    }
+
+    const ls = createList(data);
+    table.after(ls);
+
+
+    function countNodes(node) {
+        let counter = 0
+        for (let child of node.childNodes) {
+            if (child.nodeName === 'LI') {
+                counter +=1
+            }
+            counter += countNodes(child);
+        }
+        if ((counter > 0) && (node.nodeName === 'LI'))  {
+            node.firstChild.data += ' [' + counter + ']'
+        }
+        return counter
+
+    }
+
+    console.log(countNodes(ls));
+
+
+    
+ </script>
+
+
+<ul id="exercise5">
+    <li id="one">1</li>
+    <li id="two">4</li>
+  </ul>
+
+  <script> 
+    const three = document.createElement('li');
+    three.innerHTML='3';
+    two.before(three);
+    const four = document.createElement('li');
+    four.innerHTML='2';
+    one.after(four);
+
+    // one.insertAdjacentHTML('afterend', '<li>2</li><li>3</li>');
+
+  </script>
+    
+</body>
+</html>
