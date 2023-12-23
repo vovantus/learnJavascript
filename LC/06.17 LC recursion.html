@@ -29,6 +29,16 @@
         // console.log(convertToBinary(129)); //10000001
 
 
+        // у вас есть вершина дерева, постройте из нее дерево глубиной 50.
+        // напишите  рекурсивную функцию которая вычисляет высоту дерева 
+        // console.log(height(root)); // 50
+        
+        const root = {
+                    data: 1,  // данные
+                    left: left,  // ссылка на левый узел
+                    right: right // ссылка на правый узел
+
+    }
 
         // конструктор для вершин дерева
         function CreateNode (data, left, right) {
@@ -41,7 +51,7 @@
 
 
         // создаем корень дерева
-        let root = new CreateNode(100,null,null);
+    //    let root = new CreateNode(100,null,null);
         let current = root
         for (let i = 1; i<=5; i++) {
 

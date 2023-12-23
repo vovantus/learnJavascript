@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        "use strict"
+
+        function fibonacciMemoized (n) {
+            const fibNumbers = [0,1];
+
+            function fibonacci (n) {
+                if (fibNumbers.length < (n)) {
+                    fibNumbers.push(fibonacci(n-1) + fibonacci(n-2));
+                }
+                return fibNumbers[n-1];
+            }
+
+            return fibonacci(n)
+        }
+
+
+        console.log(fibonacciMemoized(55))
+
+     </script>
+    
+</body>
+</html>
